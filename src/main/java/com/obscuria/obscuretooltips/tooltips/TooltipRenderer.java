@@ -57,7 +57,7 @@ public class TooltipRenderer {
         final Style style = override.hasStyle ? override.STYLE : Resources.INSTANCE.getStyle("common");
         final String render = override.hasRender ? override.RENDER : (ModConfig.Client.model.get() ? "model" : "flat");
         final String type = new TranslatableComponent("tooltip.item_type." + (override.hasType ? override.TYPE : getItemType(stack))).getString();
-        final float scale = override.hasScale ? override.SCALE : 2;
+        final float scale = override.hasScale ? override.SCALE : ModConfig.Client.scale.get().floatValue();
         final int xOffset = override.X_OFFSET;
         final int yOffset = override.Y_OFFSET;
 
@@ -76,7 +76,7 @@ public class TooltipRenderer {
         if (xPos + width > Minecraft.getInstance().screen.width) xPos -= 28 + width;
         if (yPos + height + 6 > Minecraft.getInstance().screen.height) yPos = Minecraft.getInstance().screen.height - height - 6;
 
-        if (stack.getItem() instanceof ArmorItem) drawArmorPreview(pose, stack, xPos, yPos);
+        if (stack.getItem() instanceof ArmorItem && ModConfig.Client.armorPreview.get()) drawArmorPreview(pose, stack, xPos, yPos);
 
         drawFrame(style, pose, xPos, yPos, 400, width, height, true, true);
 
