@@ -12,18 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ModConfig {
-    public static class Common {
-        public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-        public static final ForgeConfigSpec COMMON_SPEC;
-        public static final ForgeConfigSpec.BooleanValue dropSharpRib;
-
-        static {
-            BUILDER.push("General");
-            dropSharpRib = BUILDER.comment("Drop Sharp Rib from skeletons").worldRestart().define("dropSharpRib", true);
-            BUILDER.pop();
-            COMMON_SPEC = BUILDER.build();
-        }
-    }
 
     public static class Client {
         public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -59,17 +47,15 @@ public class ModConfig {
 
     public static void init() {
         Path configPath = FMLPaths.CONFIGDIR.get();
-        Path bopConfigPath = Paths.get(configPath.toAbsolutePath().toString(), "Obscuria");
+        Path modConfigPath = Paths.get(configPath.toAbsolutePath().toString(), "Obscuria");
         try {
-            Files.createDirectory(bopConfigPath);
+            Files.createDirectory(modConfigPath);
         } catch (FileAlreadyExistsException ignored) {
         } catch (IOException e) {
             ObscureAPI.LOGGER.error("Failed to create Obscuria config directory", e);
         }
-        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, Common.COMMON_SPEC,
-                "Obscuria/obscure-api-common.toml");
         ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.CLIENT, Client.CLIENT_SPEC,
-                "Obscuria/obscure-api-client.toml");
+                "Obscuria/obscure-tooltips-client.toml");
     }
 }
 

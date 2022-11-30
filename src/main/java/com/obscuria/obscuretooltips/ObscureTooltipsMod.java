@@ -19,6 +19,7 @@ public class ObscureTooltipsMod {
 
     public ObscureTooltipsMod() {
         if (FMLEnvironment.dist == Dist.CLIENT) {
+            ModConfig.init();
             MinecraftForge.EVENT_BUS.addListener(TooltipRenderer::onTick);
             MinecraftForge.EVENT_BUS.addListener(TooltipRenderer::onTooltip);
             if (Minecraft.getInstance().getResourceManager() instanceof ReloadableResourceManager resourceManager)
