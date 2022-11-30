@@ -27,7 +27,7 @@ public class ModConfig {
 
         static {
             BUILDER.push("PickupNotifier");
-            pickupDisplay = BUILDER.worldRestart().define("Display", true);
+            pickupDisplay = BUILDER.worldRestart().define("Display2", true);
             pickupStyle = BUILDER.worldRestart().define("Style", true);
             pickupLifetime = BUILDER.worldRestart().defineInRange("Lifetime", 5, 0, 20);
 
