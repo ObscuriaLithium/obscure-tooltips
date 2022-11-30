@@ -33,12 +33,9 @@ public class ModConfig {
     public static void init() {
         Path configPath = FMLPaths.CONFIGDIR.get();
         Path modConfigPath = Paths.get(configPath.toAbsolutePath().toString(), "Obscuria");
-        try {
-            Files.createDirectory(modConfigPath);
+        try { Files.createDirectory(modConfigPath);
         } catch (FileAlreadyExistsException ignored) {
-        } catch (IOException e) {
-            ObscureAPI.LOGGER.error("Failed to create Obscuria config directory", e);
-        }
+        } catch (IOException e) { ObscureAPI.LOGGER.error("Failed to create Obscuria config directory", e); }
         ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.CLIENT, Client.CLIENT_SPEC,
                 "Obscuria/obscure-tooltips-client.toml");
     }
