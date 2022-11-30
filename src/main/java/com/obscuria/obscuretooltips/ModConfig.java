@@ -16,14 +16,14 @@ public class ModConfig {
     public static class Client {
         public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
         public static final ForgeConfigSpec CLIENT_SPEC;
-        public static final ForgeConfigSpec.BooleanValue showArmorPreview;
-        public static final ForgeConfigSpec.BooleanValue renderModel;
+        public static final ForgeConfigSpec.BooleanValue armorPreview;
+        public static final ForgeConfigSpec.BooleanValue model;
         public static final ForgeConfigSpec.DoubleValue scale;
 
         static {
             BUILDER.push("Settings");
-            showArmorPreview = BUILDER.worldRestart().comment("If enabled, armor model will be displayed next to tooltip.").define("ArmorPreview", true);
-            renderModel = BUILDER.worldRestart().comment("If enabled, item icons will be 3D. This option is", "overridden by entries from the resource pack.").define("3DIcons", true);
+            armorPreview = BUILDER.worldRestart().comment("If enabled, armor model will be displayed next to tooltip.").define("ArmorPreview", true);
+            model = BUILDER.worldRestart().comment("If enabled, item icons will be 3D. This option is", "overridden by entries from the resource pack.").define("3DIcons", true);
             scale = BUILDER.worldRestart().comment("Basic icon scale. This option is overridden by entries from", "the resource pack.").defineInRange("Scale", 2.0, 1, 20);
             BUILDER.pop();
             CLIENT_SPEC = BUILDER.build();
