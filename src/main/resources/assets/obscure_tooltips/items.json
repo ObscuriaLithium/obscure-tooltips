@@ -1,0 +1,3 @@
+{
+  "minecraft:diamond": { "style": "gold", "render": "model", "scale": 2, "xOffset": 0, "yOffset": 0, "type": "material" }
+}

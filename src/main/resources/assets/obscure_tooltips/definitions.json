@@ -1,0 +1,14 @@
+{
+  "default": "common",
+  "rarities": {
+    "common": "common",
+    "uncommon": "common",
+    "rare": "gold",
+    "epic": "gold",
+    "mythic": "gold",
+    "legendary": "gold"
+  },
+  "mods": {
+    "example_mod": "gold"
+  }
+}

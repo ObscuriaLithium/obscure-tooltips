@@ -1,0 +1,12 @@
+{
+  "common": {
+    "background": "textures/common/back.png",
+    "border": "textures/common/border.png",
+    "decorations": "textures/common/decor.png"
+  },
+  "gold": {
+    "background": "textures/gold/back.png",
+    "border": "textures/gold/border.png",
+    "decorations": "textures/gold/decor.png"
+  }
+}
