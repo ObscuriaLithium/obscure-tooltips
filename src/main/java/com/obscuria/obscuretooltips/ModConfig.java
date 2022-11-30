@@ -24,14 +24,12 @@ public class ModConfig {
         public static final ForgeConfigSpec.BooleanValue pickupStyle;
         public static final ForgeConfigSpec.IntValue buttonsOffsetY;
         public static final ForgeConfigSpec.IntValue pickupLifetime;
-        public static final ForgeConfigSpec.IntValue pickupOffset;
 
         static {
             BUILDER.push("PickupNotifier");
             pickupDisplay = BUILDER.worldRestart().define("Display", true);
             pickupStyle = BUILDER.worldRestart().define("Style", true);
             pickupLifetime = BUILDER.worldRestart().defineInRange("Lifetime", 5, 0, 20);
-            pickupOffset = BUILDER.worldRestart().defineInRange("Offset", 0, 0, 1080);
 
             BUILDER.pop();
             BUILDER.push("Tooltips");
