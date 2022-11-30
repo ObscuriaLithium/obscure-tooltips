@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
+import com.obscuria.obscuretooltips.ModConfig;
 import com.obscuria.obscuretooltips.Resources;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -54,7 +55,7 @@ public class TooltipRenderer {
         final List<ClientTooltipComponent> lines = new ArrayList<>(components);
         final Override override = Resources.INSTANCE.getStyle(stack.getItem());
         final Style style = override.hasStyle ? override.STYLE : Resources.INSTANCE.getStyle("common");
-        final String render = override.hasRender ? override.RENDER : "flat";
+        final String render = override.hasRender ? override.RENDER : (ModConfig.Client.model.get() ? "model" : "flat");
         final String type = new TranslatableComponent("tooltip.item_type." + (override.hasType ? override.TYPE : getItemType(stack))).getString();
         final float scale = override.hasScale ? override.SCALE : 2;
         final int xOffset = override.X_OFFSET;

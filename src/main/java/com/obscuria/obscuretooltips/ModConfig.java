@@ -23,7 +23,7 @@ public class ModConfig {
         static {
             BUILDER.push("Settings");
             armorPreview = BUILDER.worldRestart().comment("If enabled, armor model will be displayed next to tooltip.").define("ArmorPreview", true);
-            model = BUILDER.worldRestart().comment("If enabled, item icons will be 3D. This option is", "overridden by entries from the resource pack.").define("3DIcons", true);
+            model = BUILDER.worldRestart().comment("If enabled, item icons will be 3D. This option is", "overridden by entries from the resource pack.").define("3DModels", true);
             scale = BUILDER.worldRestart().comment("Basic icon scale. This option is overridden by entries from", "the resource pack.").defineInRange("Scale", 2.0, 1, 20);
             BUILDER.pop();
             CLIENT_SPEC = BUILDER.build();
