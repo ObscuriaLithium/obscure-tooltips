@@ -9,6 +9,7 @@ import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,11 +25,12 @@ public class Resources implements ResourceManagerReloadListener {
     public static final Override NO_OVERRIDE = new Override(0, 0);
     private final HashMap<String, Style> STYLES = new HashMap<>();
     private final HashMap<Item, Override> OVERRIDES = new HashMap<>();
+    private final HashMap<String, Style> RARITIES = new HashMap<>();
     private Resources() { }
 
     @java.lang.Override
     public void onResourceManagerReload(@NotNull net.minecraft.server.packs.resources.ResourceManager resourceManager) {
-        STYLES.clear(); OVERRIDES.clear();
+        STYLES.clear(); OVERRIDES.clear(); RARITIES.clear();
         //Styles
         try {
             for (Resource resource : resourceManager.getResources(new ResourceLocation(ObscureTooltipsMod.MODID, "styles.json"))) {
@@ -67,13 +69,32 @@ public class Resources implements ResourceManagerReloadListener {
                 }
             }
         } catch (Exception e) { }
-        System.out.println(OVERRIDES);
+        //Definitions
+        try {
+            for (Resource resource : resourceManager.getResources(new ResourceLocation(ObscureTooltipsMod.MODID, "definitions.json"))) {
+                try (InputStream inputStream = resource.getInputStream()) {
+                    JsonObject rootObject = GsonHelper.parse(new InputStreamReader(inputStream), true);
+                    if (rootObject.has("rarities") && rootObject.get("rarities").isJsonObject()) {
+                        for (Map.Entry<String, JsonElement> entry : rootObject.get("rarities").getAsJsonObject().entrySet()) {
+                            RARITIES.put(entry.getKey(), getStyle(entry.getValue().getAsString()));
+                            RARITIES.put(entry.getKey().toUpperCase(), getStyle(entry.getValue().getAsString()));
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) { }
+        System.out.println(RARITIES);
     }
 
     public Style getStyle(String key) {
         return STYLES.getOrDefault(key, DEFAULT_STYLE);
     }
-    public Override getStyle(Item item) {
+
+    public Style getStyle(ItemStack stack) {
+        return RARITIES.getOrDefault(stack.getRarity().name(), DEFAULT_STYLE);
+    }
+
+    public Override getOverride(Item item) {
         return OVERRIDES.getOrDefault(item, NO_OVERRIDE);
     }
 }

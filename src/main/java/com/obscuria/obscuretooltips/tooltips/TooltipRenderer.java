@@ -53,8 +53,8 @@ public class TooltipRenderer {
     private static void drawTooltip(PoseStack pose, @NotNull List<ClientTooltipComponent> components, Font font, ItemStack stack, int x, int y) {
         if (components.isEmpty() || Minecraft.getInstance().screen == null) return;
         final List<ClientTooltipComponent> lines = new ArrayList<>(components);
-        final Override override = Resources.INSTANCE.getStyle(stack.getItem());
-        final Style style = override.hasStyle ? override.STYLE : Resources.INSTANCE.getStyle("common");
+        final Override override = Resources.INSTANCE.getOverride(stack.getItem());
+        final Style style = override.hasStyle ? override.STYLE : Resources.INSTANCE.getStyle(stack);
         final String render = override.hasRender ? override.RENDER : (ModConfig.Client.model.get() ? "model" : "flat");
         final String type = new TranslatableComponent("tooltip.item_type." + (override.hasType ? override.TYPE : getItemType(stack))).getString();
         final float scale = override.hasScale ? override.SCALE : ModConfig.Client.scale.get().floatValue();
@@ -116,7 +116,7 @@ public class TooltipRenderer {
 
         pose.pushPose();
         pose.translate(xPos, yPos, 400);
-        font.drawShadow(pose, "§7" + type, 42, 24, 0);
+        font.drawShadow(pose, "§7" + type, 42, 23, 0);
         pose.popPose();
 
         Minecraft.getInstance().getItemRenderer().blitOffset = blitOffset;
