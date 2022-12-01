@@ -8,5 +8,10 @@
     "background": "textures/gold/back.png",
     "border": "textures/gold/border.png",
     "decorations": "textures/gold/decor.png"
+  },
+  "bone": {
+    "background": "textures/bone/back.png",
+    "border": "textures/bone/border.png",
+    "decorations": "textures/bone/decor.png"
   }
 }

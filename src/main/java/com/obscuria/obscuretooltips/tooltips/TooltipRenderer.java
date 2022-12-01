@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
+import com.obscuria.obscureapi.utils.FontHelper;
 import com.obscuria.obscuretooltips.ModConfig;
 import com.obscuria.obscuretooltips.Resources;
 import net.minecraft.client.Minecraft;
@@ -16,6 +17,7 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -54,10 +56,10 @@ public class TooltipRenderer {
         if (components.isEmpty() || Minecraft.getInstance().screen == null) return;
         final List<ClientTooltipComponent> lines = new ArrayList<>(components);
         final Override override = Resources.INSTANCE.getOverride(stack.getItem());
-        final Style style = override.hasStyle ? override.STYLE : Resources.INSTANCE.getStyle(stack);
-        final String render = override.hasRender ? override.RENDER : (ModConfig.Client.model.get() ? "model" : "flat");
-        final String type = new TranslatableComponent("tooltip.item_type." + (override.hasType ? override.TYPE : getItemType(stack))).getString();
-        final float scale = override.hasScale ? override.SCALE : ModConfig.Client.scale.get().floatValue();
+        final Style style = Resources.INSTANCE.getStyle(stack, override);
+        final Component type = FontHelper.component("§7" + Resources.INSTANCE.getType(stack, override));
+        final String render = Resources.INSTANCE.getRender(stack, override);
+        final float scale = Resources.INSTANCE.getScale(stack, override);
         final int xOffset = override.X_OFFSET;
         final int yOffset = override.Y_OFFSET;
 
@@ -116,7 +118,7 @@ public class TooltipRenderer {
 
         pose.pushPose();
         pose.translate(xPos, yPos, 400);
-        font.drawShadow(pose, "§7" + type, 42, 23, 0);
+        font.drawShadow(pose, type, 42, 22, 0);
         pose.popPose();
 
         Minecraft.getInstance().getItemRenderer().blitOffset = blitOffset;
@@ -314,21 +316,6 @@ public class TooltipRenderer {
         posestack.popPose();
         RenderSystem.applyModelViewMatrix();
         Lighting.setupFor3DItems();
-    }
-
-    private static @NotNull String getItemType(@NotNull ItemStack stack) {
-        final Item item = stack.getItem();
-        if (item instanceof ArmorItem) return "armor";
-        if (item instanceof ShieldItem) return "shield";
-        if (item instanceof SwordItem) return "weapon";
-        if (item instanceof BowItem || item instanceof CrossbowItem || item instanceof TridentItem) return "ranged_weapon";
-        if (item instanceof TieredItem || item.getMaxDamage(stack) > 0) return "tool";
-        if (item.isEdible()) return "food";
-        if (item instanceof PotionItem) return "potion";
-        if (item instanceof EnchantedBookItem) return "magic";
-        if (item instanceof BlockItem) return "block";
-        if (item instanceof ArrowItem) return "ammo";
-        return "material";
     }
 
     private static void start() {
