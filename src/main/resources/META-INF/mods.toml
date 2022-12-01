@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[40,)"
-license="All rights reserved"
+license="Obscuria Lithium (c) 2022, All Rights Reserved"
 
 [[mods]]
 modId="obscure_tooltips"
