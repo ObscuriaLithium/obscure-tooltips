@@ -4,5 +4,6 @@
 
   "minecraft:command_block": { "render": "model" },
   "minecraft:diamond": { "style": "gold" },
-  "minecraft:emerald": { "style": "gold" }
+  "minecraft:emerald": { "style": "gold" },
+  "minecraft:shield": { "render": "flat" }
 }
