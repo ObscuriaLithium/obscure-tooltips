@@ -1,0 +1,13 @@
+{
+  "tooltip.item_type.armor": "Броня",
+  "tooltip.item_type.shield": "Щит",
+  "tooltip.item_type.weapon": "Оружие",
+  "tooltip.item_type.ranged_weapon": "Дальнобойное оружие",
+  "tooltip.item_type.tool": "Инструмент",
+  "tooltip.item_type.food": "Еда",
+  "tooltip.item_type.potion": "Зелье",
+  "tooltip.item_type.magic": "Магия",
+  "tooltip.item_type.block": "Блок",
+  "tooltip.item_type.ammo": "Аммуниция",
+  "tooltip.item_type.material": "Материал"
+}
