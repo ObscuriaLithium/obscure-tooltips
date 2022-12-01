@@ -4,6 +4,11 @@
     "border": "textures/common/border.png",
     "decorations": "textures/common/decor.png"
   },
+  "silver": {
+    "background": "textures/silver/back.png",
+    "border": "textures/silver/border.png",
+    "decorations": "textures/silver/decor.png"
+  },
   "gold": {
     "background": "textures/gold/back.png",
     "border": "textures/gold/border.png",
@@ -13,5 +18,10 @@
     "background": "textures/bone/back.png",
     "border": "textures/bone/border.png",
     "decorations": "textures/bone/decor.png"
+  },
+  "ice": {
+    "background": "textures/ice/back.png",
+    "border": "textures/ice/border.png",
+    "decorations": "textures/ice/decor.png"
   }
 }
