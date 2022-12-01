@@ -18,6 +18,7 @@ public class ObscureTooltipsMod {
     private static final Logger LOGGER = LogManager.getLogger(MODID);
 
     public ObscureTooltipsMod() {
+        //TEST
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ModConfig.init();
             MinecraftForge.EVENT_BUS.addListener(TooltipRenderer::onTick);
