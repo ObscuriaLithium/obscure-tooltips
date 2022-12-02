@@ -2,7 +2,7 @@
   "default": "common",
   "rarities": {
     "common": "common",
-    "uncommon": "common",
+    "uncommon": "silver",
     "rare": "gold",
     "epic": "gold",
     "mythic": "gold",

@@ -1,0 +1,10 @@
+{
+  "bones": {
+    "overrides": { "style": "bone" },
+    "items": ["minecraft:bone", "minecraft:skeleton_skull", "minecraft:wither_skeleton_skull"]
+  },
+  "cold": {
+    "overrides": { "style": "ice" },
+    "items": ["minecraft:snow_block", "minecraft:snow", "minecraft:snowball", "minecraft:ice", "minecraft:packed_ice", "minecraft:blue_ice", "minecraft:powder_snow_bucket"]
+  }
+}
