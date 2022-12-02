@@ -33,8 +33,8 @@ public class Resources implements ResourceManagerReloadListener {
         STYLES.clear(); OVERRIDES.clear(); RARITIES.clear();
         //Styles
         try {
-            for (Resource resource : resourceManager.getResources(new ResourceLocation(ObscureTooltipsMod.MODID, "styles.json"))) {
-                try (InputStream inputStream = resource.getInputStream()) {
+            for (Resource resource : resourceManager.getResourceStack(new ResourceLocation(ObscureTooltipsMod.MODID, "styles.json"))) {
+                try (InputStream inputStream = resource.open()) {
                     JsonObject rootObject = GsonHelper.parse(new InputStreamReader(inputStream), true);
                     for (Map.Entry<String, JsonElement> entry : rootObject.entrySet()) {
                         if (entry.getValue().isJsonObject()) {
@@ -50,8 +50,8 @@ public class Resources implements ResourceManagerReloadListener {
         } catch (Exception e) { }
         //Item Overrides
         try {
-            for (Resource resource : resourceManager.getResources(new ResourceLocation(ObscureTooltipsMod.MODID, "items.json"))) {
-                try (InputStream inputStream = resource.getInputStream()) {
+            for (Resource resource : resourceManager.getResourceStack(new ResourceLocation(ObscureTooltipsMod.MODID, "items.json"))) {
+                try (InputStream inputStream = resource.open()) {
                     JsonObject rootObject = GsonHelper.parse(new InputStreamReader(inputStream), true);
                     for (Map.Entry<String, JsonElement> entry : rootObject.entrySet()) {
                         if (ForgeRegistries.ITEMS.containsKey(new ResourceLocation(entry.getKey())) && entry.getValue().isJsonObject()) {
@@ -71,8 +71,8 @@ public class Resources implements ResourceManagerReloadListener {
         } catch (Exception e) { }
         //Definitions
         try {
-            for (Resource resource : resourceManager.getResources(new ResourceLocation(ObscureTooltipsMod.MODID, "definitions.json"))) {
-                try (InputStream inputStream = resource.getInputStream()) {
+            for (Resource resource : resourceManager.getResourceStack(new ResourceLocation(ObscureTooltipsMod.MODID, "definitions.json"))) {
+                try (InputStream inputStream = resource.open()) {
                     JsonObject rootObject = GsonHelper.parse(new InputStreamReader(inputStream), true);
                     if (rootObject.has("rarities") && rootObject.get("rarities").isJsonObject()) {
                         for (Map.Entry<String, JsonElement> entry : rootObject.get("rarities").getAsJsonObject().entrySet()) {

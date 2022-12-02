@@ -16,7 +16,7 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
@@ -56,7 +56,7 @@ public class TooltipRenderer {
         final Override override = Resources.INSTANCE.getOverride(stack.getItem());
         final Style style = override.hasStyle ? override.STYLE : Resources.INSTANCE.getStyle(stack);
         final String render = override.hasRender ? override.RENDER : (ModConfig.Client.model.get() ? "model" : "flat");
-        final String type = new TranslatableComponent("tooltip.item_type." + (override.hasType ? override.TYPE : getItemType(stack))).getString();
+        final String type = Component.translatable("tooltip.item_type." + (override.hasType ? override.TYPE : getItemType(stack))).getString();
         final float scale = override.hasScale ? override.SCALE : ModConfig.Client.scale.get().floatValue();
         final int xOffset = override.X_OFFSET;
         final int yOffset = override.Y_OFFSET;
@@ -92,8 +92,7 @@ public class TooltipRenderer {
         RenderSystem.disableTexture();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        bufferbuilder.end();
-        BufferUploader.end(bufferbuilder);
+        BufferUploader.drawWithShader(bufferbuilder.end());
         RenderSystem.disableBlend();
         RenderSystem.enableTexture();
         MultiBufferSource.BufferSource multibuffersource$buffersource = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
