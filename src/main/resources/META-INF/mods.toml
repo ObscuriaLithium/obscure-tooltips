@@ -4,7 +4,7 @@ license="Obscuria Lithium (c) 2022, All Rights Reserved"
 
 [[mods]]
 modId="obscure_tooltips"
-version="1.0"
+version="1.0.api9"
 displayName="Obscure Tooltips"
 logoFile="examplemod.png"
 credits="Everyone who supports me on Patreon!"
@@ -27,7 +27,7 @@ Client side mod that adds styles for tooltips.
 [[dependencies.obscure_tooltips]]
     modId="obscure_api"
     mandatory=true
-    versionRange="[8,)"
+    versionRange="[9,)"
     ordering="NONE"
     side="CLIENT"
 
