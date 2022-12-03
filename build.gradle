@@ -121,8 +121,8 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.19.2-43.1.7'
-    implementation fg.deobf('curse.maven:obscure_api-638417:4094568')
-    runtimeOnly fg.deobf('curse.maven:ob_aquamirae-536254:4094579')
+    implementation fg.deobf('curse.maven:obscure_api-638417:4131770')
+    runtimeOnly fg.deobf('curse.maven:ob_aquamirae-536254:4131789')
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

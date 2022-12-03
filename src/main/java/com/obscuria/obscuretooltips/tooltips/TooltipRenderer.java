@@ -7,7 +7,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
-import com.obscuria.obscureapi.utils.FontHelper;
+import com.obscuria.obscureapi.utils.TextHelper;
 import com.obscuria.obscuretooltips.ModConfig;
 import com.obscuria.obscuretooltips.Resources;
 import net.minecraft.client.Minecraft;
@@ -56,7 +56,7 @@ public class TooltipRenderer {
         final List<ClientTooltipComponent> lines = new ArrayList<>(components);
         final Override override = Resources.INSTANCE.getOverride(stack.getItem());
         final Style style = Resources.INSTANCE.getStyle(stack, override);
-        final Component type = FontHelper.component("§7" + Resources.INSTANCE.getType(stack, override));
+        final Component type = TextHelper.component("§7" + Resources.INSTANCE.getType(stack, override));
         final String render = Resources.INSTANCE.getRender(stack, override);
         final float scale = Resources.INSTANCE.getScale(stack, override);
         final int xOffset = override.X_OFFSET;
@@ -301,9 +301,7 @@ public class TooltipRenderer {
         entityrenderdispatcher.overrideCameraOrientation(quaternion);
         entityrenderdispatcher.setRenderShadow(false);
         MultiBufferSource.BufferSource multibuffersource$buffersource = Minecraft.getInstance().renderBuffers().bufferSource();
-        RenderSystem.runAsFancy(() -> {
-            entityrenderdispatcher.render(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, posestack1, multibuffersource$buffersource, 15728880);
-        });
+        RenderSystem.runAsFancy(() -> entityrenderdispatcher.render(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, posestack1, multibuffersource$buffersource, 15728880));
         multibuffersource$buffersource.endBatch();
         entityrenderdispatcher.setRenderShadow(true);
         entity.yBodyRot = f2;

@@ -3,7 +3,7 @@ package com.obscuria.obscuretooltips;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.obscuria.obscureapi.library.interfaces.IClassItem;
+import com.obscuria.obscureapi.classes.IClassItem;
 import com.obscuria.obscuretooltips.tooltips.Override;
 import com.obscuria.obscuretooltips.tooltips.Style;
 import net.minecraft.network.chat.Component;
@@ -137,7 +137,7 @@ public class Resources implements ResourceManagerReloadListener {
     public String getType(ItemStack stack, Override override) {
         final Item item = stack.getItem();
         if (item instanceof IClassItem classItem) return Component.translatable("icon.star").getString() + "§6"
-                + classItem.getObscureClass().getSign(((IClassItem) item).getObscureType());
+                + classItem.getObscureClass().getLabel(((IClassItem) item).getObscureType());
         if (stack.getTag() != null && stack.getTag().contains("TooltipType")) return stack.getTag().getString("TooltipType");
         String type;
         if (override.hasType) type = override.TYPE;
