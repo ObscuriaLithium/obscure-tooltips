@@ -84,8 +84,8 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
-    implementation fg.deobf('curse.maven:obscure_api-638417:4094396')
-    runtimeOnly fg.deobf('curse.maven:ob_aquamirae-536254:4094454')
+    implementation fg.deobf('curse.maven:obscure_api-638417:4131729')
+    runtimeOnly fg.deobf('curse.maven:ob_aquamirae-536254:4131790')
 }
 
 jar {

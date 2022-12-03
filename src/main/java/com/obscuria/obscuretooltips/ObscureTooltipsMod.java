@@ -1,5 +1,6 @@
 package com.obscuria.obscuretooltips;
 
+import com.obscuria.obscureapi.ObscureAPI;
 import com.obscuria.obscuretooltips.tooltips.TooltipRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.packs.resources.ReloadableResourceManager;
@@ -19,12 +20,14 @@ public class ObscureTooltipsMod {
 
     public ObscureTooltipsMod() {
         if (FMLEnvironment.dist == Dist.CLIENT) {
+            ObscureAPI.addMod(MODID, "obscure-tooltips");
             ModConfig.init();
             MinecraftForge.EVENT_BUS.addListener(TooltipRenderer::onTick);
             MinecraftForge.EVENT_BUS.addListener(TooltipRenderer::onTooltip);
             if (Minecraft.getInstance().getResourceManager() instanceof ReloadableResourceManager resourceManager)
                 resourceManager.registerReloadListener(Resources.INSTANCE);
         }
-        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> "ANY", (remote, isServer) -> true));
+        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(
+                () -> "ANY", (remote, isServer) -> true));
     }
 }
