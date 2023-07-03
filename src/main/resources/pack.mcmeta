@@ -1,6 +1,7 @@
 {
-    "pack": {
-        "description": "Obscure Tooltips Resources",
-        "pack_format": 9
-    }
+  "pack": {
+    "description": "Obscure Tooltips Resources",
+    "pack_format": 15,
+    "forge:server_data_pack_format": 12
+  }
 }

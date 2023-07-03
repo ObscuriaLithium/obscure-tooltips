@@ -1,0 +1,12 @@
+{
+  "items": {
+    "mod_id:item_id": "my_first_style",
+    "mod_id:other_item_id": "my_second_style"
+  },
+  "groups": [
+    {
+      "style": "my_first_style",
+      "items": [ "minecraft:stone", "mod_id:other_item_id" ]
+    }
+  ]
+}

@@ -1,9 +1,0 @@
-{
-  "minecraft:example1": { "style": "common", "render": "model", "scale": 2, "xOffset": 0, "yOffset": 0, "type": "magic" },
-  "minecraft:example2": { "style": "gold", "render": "flat", "scale": 1, "xOffset": -100, "yOffset": 100, "type": "custom_type" },
-
-  "minecraft:command_block": { "render": "model" },
-  "minecraft:diamond": { "style": "gold" },
-  "minecraft:emerald": { "style": "gold" },
-  "minecraft:shield": { "render": "flat" }
-}

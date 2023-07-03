@@ -1,33 +1,25 @@
 modLoader="javafml"
-loaderVersion="[43,)"
-license="Obscuria Lithium (c) 2022, All Rights Reserved"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
 
 [[mods]]
-modId="obscure_tooltips"
-version="1.0.api9"
-displayName="Obscure Tooltips"
-logoFile="examplemod.png"
-credits="Everyone who supports me on Patreon!"
-authors="Obscuria"
-description='''
-Client side mod that adds styles for tooltips.
- - Tooltips contain item icon (2D/3D)
- - Armor appearance preview
- - Ability to add an unlimited number of styles via resource packs
- - Ability to change the style in-game through tags
-'''
+   modId="${mod_id}"
+   version="${mod_version}"
+   displayName="${mod_name}"
+   authors="${mod_authors}"
+   displayTest="IGNORE_ALL_VERSION"
+   description='''${mod_description}'''
 
-[[dependencies.obscure_tooltips]]
-modId="forge"
-mandatory=true
-versionRange="[43,)"
-ordering="NONE"
-side="CLIENT"
+[[dependencies.${mod_id}]]
+   modId="forge"
+   mandatory=true
+   versionRange="${forge_version_range}"
+   ordering="NONE"
+   side="CLIENT"
 
-[[dependencies.obscure_tooltips]]
-modId="obscure_api"
-mandatory=true
-versionRange="[9,)"
-ordering="NONE"
-side="CLIENT"
-
+[[dependencies.${mod_id}]]
+   modId="minecraft"
+   mandatory=true
+   versionRange="${minecraft_version_range}"
+   ordering="NONE"
+   side="CLIENT"

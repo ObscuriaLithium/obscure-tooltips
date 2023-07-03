@@ -1,0 +1,19 @@
+{
+  "my_first_style": {
+    "panel": {
+      "id": "obscure_tooltips:color_rect",
+      "params": { "back_top": "ffff00ff", "back_bottom": "ffff00ff", "border_top": "ffffffff", "border_bottom": "ffffffff", "slot": "ffffffff" }
+    },
+    "frame": {
+      "id": "obscure_tooltips:texture",
+      "params": { "texture": "namespace:tooltips/decoration/my_frame.png" }
+    },
+    "icon": { "id": "obscure_tooltips:animated_epic", "params": {} },
+    "effects": [
+      { "id": "obscure_tooltips:enchantment", "params": {} },
+      { "id": "obscure_tooltips:tails", "params": {} }
+    ]
+  },
+  "my_second_style": {},
+  "my_infinity_style": {}
+}
