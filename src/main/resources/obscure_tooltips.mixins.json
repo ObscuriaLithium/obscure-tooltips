@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "com.obscuria.obscuretooltips.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "obscuretooltips.refmap.json",
+  "refmap": "obscure_tooltips.refmap.json",
   "mixins": [
   ],
   "client": [
