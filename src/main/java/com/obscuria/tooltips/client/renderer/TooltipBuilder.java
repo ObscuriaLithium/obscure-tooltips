@@ -165,7 +165,7 @@ public final class TooltipBuilder {
             if (stack == renderStack) return;
             resetTooltip();
             renderStack = stack;
-            renderStyle = TooltipsAssociations.getStyleFor(stack).orElse(null);
+            renderStyle = TooltipsAssociations.styleFor(stack).orElse(null);
             if (renderStyle != null) renderStyle.reset();
         }
         renderStack = stack;

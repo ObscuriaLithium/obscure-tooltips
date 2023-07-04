@@ -11,6 +11,7 @@ import net.minecraft.world.item.Items;
 public class ObscureTooltipsClient {
     public static void setup() {
         TooltipsRegistry.setup();
+        TooltipsAssociations.setup();
         if (Minecraft.getInstance().getResourceManager() instanceof ReloadableResourceManager manager)
             manager.registerReloadListener(ResourceLoader.INSTANCE);
 
