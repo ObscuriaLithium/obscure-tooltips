@@ -1,0 +1,102 @@
+package com.obscuria.tooltips.client.style;
+
+import com.google.common.collect.ImmutableList;
+import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.style.effect.TooltipEffect;
+import com.obscuria.tooltips.client.style.frame.TooltipFrame;
+import com.obscuria.tooltips.client.style.icon.TooltipIcon;
+import com.obscuria.tooltips.client.style.panel.TooltipPanel;
+import com.obscuria.tooltips.registry.TooltipsRegistry;
+import net.minecraft.world.phys.Vec2;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@OnlyIn(Dist.CLIENT)
+public final class TooltipStyle {
+    private final ImmutableList<TooltipEffect> EFFECTS;
+    private final TooltipPanel PANEL;
+    private final TooltipFrame FRAME;
+    private final TooltipIcon ICON;
+
+    private TooltipStyle(List<TooltipEffect> effects, TooltipPanel panel, TooltipFrame frame, TooltipIcon icon) {
+        EFFECTS = ImmutableList.copyOf(effects);
+        PANEL = panel;
+        FRAME = frame;
+        ICON = icon;
+    }
+
+    public void renderBack(TooltipRenderer renderer, Vec2 pos, Point size, boolean slot) {
+        PANEL.render(renderer, pos, size, slot);
+    }
+
+    public void renderFront(TooltipRenderer renderer, Vec2 pos, Point size) {
+        renderer.pose().pushPose();
+        renderer.pose().translate(0, 0, 400);
+        renderEffects(Effects.Order.LAYER_3_TEXT$FRAME, renderer, pos, size);
+        renderer.pose().popPose();
+
+        FRAME.render(renderer, pos, size);
+
+        renderer.pose().pushPose();
+        renderer.pose().translate(0, 0, 0);
+        renderEffects(Effects.Order.LAYER_4_FRAME$ICON, renderer, pos, size);
+        renderer.pose().popPose();
+
+        renderer.pose().pushPose();
+        renderer.pose().translate(pos.x + 12, pos.y + 12, 500);
+        renderer.pose().pushPose();
+        ICON.render(renderer, -8, -8);
+        renderer.pose().popPose();
+        renderer.pose().popPose();
+    }
+
+    public void renderEffects(Effects.Order order, TooltipRenderer renderer, Vec2 pos, Point size) {
+        for (TooltipEffect effect: EFFECTS)
+            if (effect.order().equals(order))
+                effect.render(renderer, pos, size);
+    }
+
+    public void reset() {
+        PANEL.reset();
+        ICON.reset();
+        FRAME.reset();
+        EFFECTS.forEach(TooltipEffect::reset);
+    }
+
+    public static class Builder {
+        private final List<TooltipEffect> effects = new ArrayList<>();
+        private TooltipPanel panel = TooltipsRegistry.BUILTIN_PANEL_DEFAULT.get();
+        private TooltipFrame frame = TooltipsRegistry.BUILTIN_FRAME_BLANK.get();
+        private TooltipIcon icon = TooltipsRegistry.BUILTIN_ICON_COMMON.get();
+
+        public Builder() {}
+
+        public TooltipStyle.Builder withPanel(TooltipPanel panel) {
+            this.panel = panel;
+            return this;
+        }
+
+        public TooltipStyle.Builder withFrame(TooltipFrame frame) {
+            this.frame = frame;
+            return this;
+        }
+
+        public TooltipStyle.Builder withIcon(TooltipIcon icon) {
+            this.icon = icon;
+            return this;
+        }
+
+        public TooltipStyle.Builder withEffects(List<TooltipEffect> effects) {
+            this.effects.addAll(effects);
+            return this;
+        }
+
+        public TooltipStyle build() {
+            return new TooltipStyle(effects, panel, frame, icon);
+        }
+    }
+}
