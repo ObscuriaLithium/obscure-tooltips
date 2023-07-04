@@ -3,6 +3,7 @@ package com.obscuria.tooltips.registry;
 import com.google.gson.JsonObject;
 import com.obscuria.tooltips.ObscureTooltips;
 import com.obscuria.tooltips.client.style.effect.EnchantmentEffect;
+import com.obscuria.tooltips.client.style.effect.EnderEffect;
 import com.obscuria.tooltips.client.style.effect.TooltipEffect;
 import com.obscuria.tooltips.client.style.frame.BonesFrame;
 import com.obscuria.tooltips.client.style.frame.TextureFrame;
@@ -35,6 +36,7 @@ public final class TooltipsRegistry {
     public static final TooltipElement<DescentShineIcon> ICON_DESCENT_SHINE;
     public static final TooltipElement<ConstantRotationIcon> ICON_CONSTANT_ROTATION;
     public static final TooltipElement<EnchantmentEffect> EFFECT_ENCHANTMENT;
+    public static final TooltipElement<EnderEffect> EFFECT_ENDER;
 
     static {
         PANEL_COLOR_RECT = registerPanel(factoryKey("color_rect"),
@@ -67,6 +69,10 @@ public final class TooltipsRegistry {
                         FactoryHelper.color(params, "end_color"),
                         FactoryHelper.color(params, "particle_center_color"),
                         FactoryHelper.color(params, "particle_edge_color")));
+        EFFECT_ENDER = registerEffect(factoryKey("ender"),
+                params -> new EnderEffect(
+                        FactoryHelper.color(params, "center_color"),
+                        FactoryHelper.color(params, "edge_color")));
     }
 
     public static final TooltipElement<ColorRectPanel> BUILTIN_PANEL_DEFAULT;
@@ -80,6 +86,8 @@ public final class TooltipsRegistry {
     public static final TooltipElement<DescentComplexIcon> BUILTIN_ICON_RARE;
     public static final TooltipElement<DescentShineIcon> BUILTIN_ICON_EPIC;
     public static final TooltipElement<EnchantmentEffect> BUILTIN_EFFECT_ENCHANTMENT_GENERAL;
+    public static final TooltipElement<EnchantmentEffect> BUILTIN_EFFECT_ENCHANTMENT_CURSE;
+    public static final TooltipElement<EnderEffect> BUILTIN_EFFECT_ENDER;
 
     static {
         BUILTIN_PANEL_DEFAULT = registerPanel(builtinKey("default"),
@@ -104,6 +112,10 @@ public final class TooltipsRegistry {
                 params -> new DescentShineIcon(0xffffffff, 0xfff00fff, 0x00ff00ff, 0xffffffff, 0xffff60ff));
         BUILTIN_EFFECT_ENCHANTMENT_GENERAL = registerEffect(builtinKey("enchantment"),
                 params -> new EnchantmentEffect(0x30f00fff, 0x00ff00ff, 0x80ff80ff, 0x00aa40aa));
+        BUILTIN_EFFECT_ENCHANTMENT_CURSE = registerEffect(builtinKey("enchantment_curse"),
+                params -> new EnchantmentEffect(0x30ff0020, 0x00ff0020, 0x80ff2080, 0x00aa2040));
+        BUILTIN_EFFECT_ENDER = registerEffect(builtinKey("ender"),
+                params -> new EnderEffect(0x90ff60ff, 0x90ff00ff));
     }
 
     public static <T extends TooltipPanel> TooltipElement<T> registerPanel(ResourceLocation key, TooltipElement<T> factory) {

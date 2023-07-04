@@ -10,7 +10,6 @@ import com.obscuria.tooltips.client.style.panel.TooltipPanel;
 import com.obscuria.tooltips.registry.TooltipsRegistry;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
@@ -73,10 +72,15 @@ public class TooltipsAssociations {
 
     public static List<TooltipEffect> collectEffects(ItemStack stack, ImmutableList<TooltipEffect> associated) {
         final List<TooltipEffect> effects = new ArrayList<>(associated);
-        if ((stack.isEnchanted() || stack.getItem() == Items.ENCHANTED_BOOK)
-                && !effects.contains(TooltipsRegistry.BUILTIN_EFFECT_ENCHANTMENT_GENERAL.get()))
-            effects.add(TooltipsRegistry.BUILTIN_EFFECT_ENCHANTMENT_GENERAL.get());
+        if (ItemGroups.CURSED.test(stack)) categorizedEffect(effects, TooltipsRegistry.BUILTIN_EFFECT_ENCHANTMENT_CURSE.get());
+        if (ItemGroups.ENCHANTED.test(stack)) categorizedEffect(effects, TooltipsRegistry.BUILTIN_EFFECT_ENCHANTMENT_GENERAL.get());
+        if (ItemGroups.ENDER.test(stack)) categorizedEffect(effects, TooltipsRegistry.BUILTIN_EFFECT_ENDER.get());
         return effects;
+    }
+
+    private static void categorizedEffect(List<TooltipEffect> effects, TooltipEffect effect) {
+        if (effects.stream().anyMatch(e -> e.category() == effect.category())) return;
+        effects.add(effect);
     }
 
     private static String rarityName(ItemStack stack) {

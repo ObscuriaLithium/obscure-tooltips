@@ -34,30 +34,28 @@ public final class TooltipStyle {
     }
 
     public void renderFront(TooltipRenderer renderer, Vec2 pos, Point size) {
-        renderer.pose().pushPose();
-        renderer.pose().translate(0, 0, 400);
         renderEffects(Effects.Order.LAYER_3_TEXT$FRAME, renderer, pos, size);
-        renderer.pose().popPose();
-
         FRAME.render(renderer, pos, size);
-
-        renderer.pose().pushPose();
-        renderer.pose().translate(0, 0, 0);
         renderEffects(Effects.Order.LAYER_4_FRAME$ICON, renderer, pos, size);
-        renderer.pose().popPose();
-
-        renderer.pose().pushPose();
-        renderer.pose().translate(pos.x + 12, pos.y + 12, 500);
-        renderer.pose().pushPose();
-        ICON.render(renderer, -8, -8);
-        renderer.pose().popPose();
-        renderer.pose().popPose();
+        renderer.push(() -> {
+            renderer.translate(pos.x + 12, pos.y + 12, 500);
+            renderer.push(() -> ICON.render(renderer, -8, -8));
+        });
     }
 
     public void renderEffects(Effects.Order order, TooltipRenderer renderer, Vec2 pos, Point size) {
-        for (TooltipEffect effect: EFFECTS)
-            if (effect.order().equals(order))
-                effect.render(renderer, pos, size);
+        renderer.push(() -> {
+            renderer.translate(0, 0, switch (order) {
+                case LAYER_1_BACK -> 0;
+                case LAYER_2_BACK$TEXT -> 100;
+                case LAYER_3_TEXT$FRAME -> 400;
+                case LAYER_4_FRAME$ICON -> 500;
+                case LAYER_5_FRONT -> 1000;
+            });
+            for (TooltipEffect effect : EFFECTS)
+                if (effect.order().equals(order))
+                    effect.render(renderer, pos, size);
+        });
     }
 
     public void reset() {

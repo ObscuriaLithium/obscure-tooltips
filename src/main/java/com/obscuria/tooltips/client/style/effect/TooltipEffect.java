@@ -17,8 +17,7 @@ public interface TooltipEffect {
         return Effects.Order.LAYER_3_TEXT$FRAME;
     }
 
-    @SuppressWarnings("unused")
     default Effects.Category category() {
-        return Effects.Category.ENCHANTMENT;
+        return Effects.Category.NONE;
     }
 }
