@@ -16,8 +16,7 @@ public interface TooltipEffect {
     default Effects.Order order() {
         return Effects.Order.LAYER_3_TEXT$FRAME;
     }
-
-    default Effects.Category category() {
-        return Effects.Category.NONE;
+    default boolean canStackWith(TooltipEffect other) {
+        return true;
     }
 }

@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@SuppressWarnings("all")
 @Mixin(value = GuiGraphics.class, priority = 0)
 public abstract class GuiGraphicsMixin {
 

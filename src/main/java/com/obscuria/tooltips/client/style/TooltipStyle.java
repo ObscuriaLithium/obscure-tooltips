@@ -1,12 +1,12 @@
 package com.obscuria.tooltips.client.style;
 
 import com.google.common.collect.ImmutableList;
+import com.obscuria.tooltips.client.StyleManager;
 import com.obscuria.tooltips.client.renderer.TooltipRenderer;
 import com.obscuria.tooltips.client.style.effect.TooltipEffect;
 import com.obscuria.tooltips.client.style.frame.TooltipFrame;
 import com.obscuria.tooltips.client.style.icon.TooltipIcon;
 import com.obscuria.tooltips.client.style.panel.TooltipPanel;
-import com.obscuria.tooltips.registry.TooltipsRegistry;
 import net.minecraft.world.phys.Vec2;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -30,12 +30,18 @@ public final class TooltipStyle {
     }
 
     public void renderBack(TooltipRenderer renderer, Vec2 pos, Point size, boolean slot) {
+        renderer.pose().pushPose();
+        renderer.pose().translate(0, 0, -100);
         PANEL.render(renderer, pos, size, slot);
+        renderer.pose().popPose();
     }
 
     public void renderFront(TooltipRenderer renderer, Vec2 pos, Point size) {
         renderEffects(Effects.Order.LAYER_3_TEXT$FRAME, renderer, pos, size);
-        FRAME.render(renderer, pos, size);
+        renderer.push(() -> {
+            renderer.translate(0, 0, -50);
+            FRAME.render(renderer, pos, size);
+        });
         renderEffects(Effects.Order.LAYER_4_FRAME$ICON, renderer, pos, size);
         renderer.push(() -> {
             renderer.translate(pos.x + 12, pos.y + 12, 500);
@@ -67,9 +73,9 @@ public final class TooltipStyle {
 
     public static class Builder {
         private final List<TooltipEffect> effects = new ArrayList<>();
-        private TooltipPanel panel = TooltipsRegistry.BUILTIN_PANEL_DEFAULT.get();
-        private TooltipFrame frame = TooltipsRegistry.BUILTIN_FRAME_BLANK.get();
-        private TooltipIcon icon = TooltipsRegistry.BUILTIN_ICON_COMMON.get();
+        private TooltipPanel panel = StyleManager.DEFAULT_PANEL;
+        private TooltipFrame frame = StyleManager.DEFAULT_FRAME;
+        private TooltipIcon icon = StyleManager.DEFAULT_ICON;
 
         public Builder() {}
 

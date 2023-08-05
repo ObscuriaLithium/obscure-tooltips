@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.math.Axis;
 import com.obscuria.tooltips.ObscureTooltipsConfig;
-import com.obscuria.tooltips.client.TooltipsAssociations;
+import com.obscuria.tooltips.client.StyleManager;
 import com.obscuria.tooltips.client.style.Effects;
 import com.obscuria.tooltips.client.style.TooltipStyle;
 import net.minecraft.client.Minecraft;
@@ -86,8 +86,8 @@ public final class TooltipBuilder {
 
     @SuppressWarnings("all")
     private static Vec2 renderSecondPanel(TooltipRenderer renderer, Vec2 pos) {
-        renderer.drawManaged(() -> renderStyle.renderBack(renderer, pos.add(new Vec2(-40, 0)), new Point(30, 60), false));
-        return pos.add(new Vec2(-25, 30));
+        renderer.drawManaged(() -> renderStyle.renderBack(renderer, pos.add(new Vec2(-55, 0)), new Point(30, 60), false));
+        return pos.add(new Vec2(-40, 30));
     }
 
     @Contract("_ -> new")
@@ -159,22 +159,28 @@ public final class TooltipBuilder {
     private static void updateStyle(ItemStack stack) {
         if (renderStand == null && Minecraft.getInstance().level != null)
             renderStand = new ArmorStand(EntityType.ARMOR_STAND, Minecraft.getInstance().level);
-        if (stack.isEmpty()) resetTooltip();
+        if (stack.isEmpty()) reset();
         else {
             tooltipSeconds = (System.currentTimeMillis() - tooltipStartMillis) / 1000f;
             if (stack == renderStack) return;
-            resetTooltip();
+            reset();
             renderStack = stack;
-            renderStyle = TooltipsAssociations.styleFor(stack).orElse(null);
+            renderStyle = StyleManager.getStyleFor(stack).orElse(null);
             if (renderStyle != null) renderStyle.reset();
         }
         renderStack = stack;
     }
 
-    private static void resetTooltip() {
+    private static void reset() {
         if (renderStyle != null) renderStyle.reset();
         renderStyle = null;
         tooltipStartMillis = System.currentTimeMillis();
         tooltipSeconds = 0f;
+    }
+
+    public static void clear() {
+        renderStack = ItemStack.EMPTY;
+        if (renderStyle != null) renderStyle.reset();
+        renderStyle = null;
     }
 }

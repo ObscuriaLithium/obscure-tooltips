@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 public class ObscureTooltips {
 
     public static final String MODID = "obscure_tooltips";
-    public static final Logger LOGGER = LogManager.getLogger(MODID);
+    public static final Logger LOGGER = LogManager.getLogger("ObscureTooltips");
 
     public ObscureTooltips() {
         ObscureTooltipsConfig.setup();

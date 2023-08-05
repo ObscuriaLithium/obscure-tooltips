@@ -1,0 +1,74 @@
+### General
+    Tooltips are modular objects consisting of panels, frames, icons and effects.
+    Each of the elements is responsible for rendering a certain part of the tooltip.
+    You can combine any elements with each other.
+
+    REGISTRATION OF ELEMENTS
+        First of all, you need to register the elements in their respective folders (panels, frames, icons and effects).
+        You can also use already registered built-in elements or elements from other resource packs that have a !lower priority!.
+        An element must be referenced by its key. Here are some examples:
+        - "frame":"obscure_tooltips:golden" - for frame in "assets/obscure_tooltips/tooltips/frames/golden.json"
+        - "panel":"my_namespace:my_folder/custom" - for panel in "assets/my_namespace/tooltips/panels/my_folder/custom.json"
+        In the element registration file, you must specify the factory ID (this defines the parent class in the code).
+        The IDs of the built-in factories and the parameters they have are in the .readme.txt files inside the elements folders.
+
+    REGISTRATION OF PRESETS
+        Presets are low-level tooltip styles that can be overridden by common styles.
+        Presets should be used for general things like adding an effect to all enchanted items or unique frames based on rarity.
+        Presets can be mixed:
+        For example, if two presets were applied to an item, one of which has only panel and frame elements, and the second has an icon,
+        then these presets form a single style, since the place for the icon was free after applying the first style.
+        Also, if a higher priority preset that only has an icon is applied to a lower priority preset that has all elements,
+        the low priority preset's icon will be replaced with the high level preset's icon.
+
+    REGISTRATION OF STYLES
+        Styles are very similar to presets, but they have the highest priority and their elements can't be overwritten by presets.
+        Styles also can't be mixed. However, if the style doesn't have some elements, then elements from presets can take their
+        place according to the usual rules, taking into account priorities.
+        Styles should be used to define the appearance of specific items: for example, if you want to create a themed set of armor and tools.
+
+    OVERWRITES
+        Elements, presets and styles can be overwritten by resource packs according to the usual rules, like textures.
+        Overwriting is not necessary, you can register as many new items with unique IDs as you like.
+
+    SUPPORT
+        If you encounter an bug or have questions, please take a look at the
+        Obscuria Collection discord server: https://discord.gg/jSHHJSUWdY
+
+
+### Filter
+    The filter determines which item the preset or style can be applied to.
+    You can combine any filter keys to customize your styles.
+    If all keys are true when checked, the preset or style can be applied.
+    If you don't add any keys, the filter will always be true!
+
+    AVAILABLE KEYS:
+
+    "items": [<IDs>] - true if the item is in the list.
+    "mods": [<IDs>] - true if the item belongs to one of the specified mods.
+    "rarity": <name> - true if the item has the specified rarity.
+    "rarities": [<names>] - true if the item has one of the specified rarities.
+
+    "tag": {
+        <some_key>:<value>
+        <other_key>:<value>
+    }
+    - true if the item contains the same key-value pairs in its NBT-Tag.
+    - only primitives are supported (numbers, booleans, strings).
+
+    "enchantments": {
+        "any_match": [<IDs>] (optional)
+        "all_match": [<IDs>] (optional)
+    }
+    - true if the item has the specified enchantments.
+
+    "keywords": {
+        "any_match": [<keywords>] (optional)
+        "all_match": [<keywords>] (optional)
+        "none_match": [<keywords>] (optional)
+    }
+    - available keywords:
+    - "enchanted" - true if item is enchanted.
+    - "enchanted_book" - true if the item is an enchanted book.
+    - "cursed" - true if item has curse.
+    - "foil" - true if the item has a foil effect (like a nether star).

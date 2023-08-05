@@ -1,0 +1,10 @@
+### Syntax
+
+    "priority": <integer>
+    - Styles with higher priority override styles with lower priority.
+
+    "panel": <ID> (optional)
+    "frame": <ID> (optional)
+    "icon": <ID> (optional)
+    "effects": [<IDs>] (optional)
+    "filter": {<keys>} (see parent .readme.txt for details)

@@ -1,0 +1,11 @@
+### Built-In Factories
+
+[obscure_tooltips:rim_lighting]
+    "start_color": <argb>
+    "end_color": <argb>
+    "particle_center_color": <argb>
+    "particle_edge_color": <argb>
+
+[obscure_tooltips:ender]
+    "center_color": <argb>
+    "edge_color": <argb>

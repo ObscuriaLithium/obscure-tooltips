@@ -1,0 +1,7 @@
+{
+  "priority": 1000,
+  "icon": "obscure_tooltips:rare",
+  "filter": {
+    "rarity": [ "uncommon" ]
+  }
+}

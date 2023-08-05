@@ -1,0 +1,7 @@
+### Built-In Factories
+
+[obscure_tooltips:bones]
+    - NO PARAMETERS
+
+[obscure_tooltips:texture]
+    "texture": <location>

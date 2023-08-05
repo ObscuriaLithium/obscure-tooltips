@@ -1,0 +1,14 @@
+### Built-In Factories
+
+[obscure_tooltips:descent_simple]
+    - NO PARAMETERS
+
+[obscure_tooltips:descent_complex]
+    - NO PARAMETERS
+
+[obscure_tooltips:descent_shine]
+    "center_color": <argb>
+    "start_color": <argb>
+    "end_color": <argb>
+    "particle_center_color": <argb>
+    "particle_edge_color": <argb>

@@ -14,7 +14,7 @@ public class EnderEffect implements TooltipEffect {
     protected final int CENTER_COLOR;
     protected final int EDGE_COLOR;
     protected final List<TooltipParticle> particles = new ArrayList<>();
-    protected float lastParticle = 0f;
+    protected float lastParticle = -0.20f;
 
     public EnderEffect(int centerColor, int edgeColor) {
         this.CENTER_COLOR = centerColor;
@@ -33,12 +33,17 @@ public class EnderEffect implements TooltipEffect {
 
     @Override
     public void reset() {
-        lastParticle = 0f;
+        lastParticle = -0.20f;
         particles.clear();
     }
 
     @Override
     public Effects.Order order() {
         return Effects.Order.LAYER_5_FRONT;
+    }
+
+    @Override
+    public boolean canStackWith(TooltipEffect other) {
+        return !(other instanceof EnderEffect);
     }
 }

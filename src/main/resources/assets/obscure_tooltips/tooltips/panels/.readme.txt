@@ -1,0 +1,8 @@
+### Built-In Factories
+
+[obscure_tooltips:color_rect]
+    "back_top_color": <argb>
+    "back_bottom_color": <argb>
+    "border_top_color": <argb>
+    "border_bottom_color": <argb>
+    "slot_color": <argb>

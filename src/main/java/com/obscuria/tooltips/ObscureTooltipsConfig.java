@@ -5,6 +5,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.loading.FMLPaths;
 
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,11 +30,9 @@ public final class ObscureTooltipsConfig {
     public static void setup() {
         Path configPath = FMLPaths.CONFIGDIR.get();
         Path modConfigPath = Paths.get(configPath.toAbsolutePath().toString(), "Obscuria");
-        try {
-            Files.createDirectory(modConfigPath);
-        } catch (Exception e) {
-            ObscureTooltips.LOGGER.error("Failed to create Obscuria config directory", e);
-        }
+        try { Files.createDirectory(modConfigPath); }
+        catch (FileAlreadyExistsException ignored) {}
+        catch (Exception e) { ObscureTooltips.LOGGER.error("Failed to create Obscuria config directory", e); }
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Client.CLIENT_SPEC, "Obscuria/obscure-tooltips-client.toml");
     }
 }

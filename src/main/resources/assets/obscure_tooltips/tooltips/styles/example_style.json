@@ -1,0 +1,19 @@
+{
+  "priority": 1000,
+  "panel": "obscure_tooltips:golden",
+  "frame": "obscure_tooltips:bones",
+  "icon": "obscure_tooltips:epic",
+  "effects": [
+    "obscure_tooltips:enchantment",
+    "obscure_tooltips:ender"
+  ],
+  "filter": {
+    "enchantments": {
+      "any_match": [ "minecraft:fire_aspect" ]
+    },
+    "tag": {
+      "test_boolean": true,
+      "test_string": "value"
+    }
+  }
+}

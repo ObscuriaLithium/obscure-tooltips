@@ -1,0 +1,9 @@
+{
+  "priority": 1000,
+  "effects": [ "obscure_tooltips:enchantment" ],
+  "filter": {
+    "keywords": {
+      "any_match": [ "enchanted", "enchanted_book", "foil" ]
+    }
+  }
+}

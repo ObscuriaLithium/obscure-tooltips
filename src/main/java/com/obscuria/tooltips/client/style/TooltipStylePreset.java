@@ -40,6 +40,15 @@ public final class TooltipStylePreset {
         return EFFECTS;
     }
 
+    @Override
+    public String toString() {
+        return "[Panel:%s, Frame:%s, Icon:%s, Effects:%s]".formatted(
+                PANEL != null ? PANEL.getClass().getSimpleName() : "none",
+                FRAME != null ? FRAME.getClass().getSimpleName() : "none",
+                ICON != null ? ICON.getClass().getSimpleName() : "none",
+                !EFFECTS.isEmpty() ? EFFECTS.stream().map(effect -> effect.getClass().getSimpleName()).toList() : "none");
+    }
+
     public static class Builder {
         private final List<TooltipEffect> effects = new ArrayList<>();
         @Nullable private TooltipPanel panel;
@@ -49,23 +58,45 @@ public final class TooltipStylePreset {
         public Builder() {}
 
         public TooltipStylePreset.Builder withPanel(@Nullable TooltipPanel panel) {
-            this.panel = panel;
-            return this;
+            return this.withPanel(panel, true);
         }
 
         public TooltipStylePreset.Builder withFrame(@Nullable TooltipFrame frame) {
-            this.frame = frame;
-            return this;
+            return this.withFrame(frame, true);
         }
 
         public TooltipStylePreset.Builder withIcon(@Nullable TooltipIcon icon) {
-            this.icon = icon;
+            return this.withIcon(icon, true);
+        }
+
+        public TooltipStylePreset.Builder withPanel(@Nullable TooltipPanel panel, boolean override) {
+            this.panel = this.panel == null || override ? panel : this.panel;
             return this;
         }
 
-        public TooltipStylePreset.Builder withEffects(List<TooltipEffect> effects) {
-            this.effects.addAll(effects);
+        public TooltipStylePreset.Builder withFrame(@Nullable TooltipFrame frame, boolean override) {
+            this.frame = this.frame == null || override ? frame : this.frame;
             return this;
+        }
+
+        public TooltipStylePreset.Builder withIcon(@Nullable TooltipIcon icon, boolean override) {
+            this.icon = this.icon == null || override ? icon : this.icon;
+            return this;
+        }
+
+        public TooltipStylePreset.Builder withEffects(@Nullable List<TooltipEffect> effects) {
+            if (effects == null) return this;
+            testCategories: for (TooltipEffect effect: effects) {
+                for (TooltipEffect loaded: this.effects)
+                    if (!effect.canStackWith(loaded))
+                        continue testCategories;
+                this.effects.add(effect);
+            }
+            return this;
+        }
+
+        public boolean isEmpty() {
+            return this.panel == null && this.frame == null && this.icon == null && this.effects.isEmpty();
         }
 
         public TooltipStylePreset build() {

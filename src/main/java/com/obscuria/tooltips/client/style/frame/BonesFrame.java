@@ -9,7 +9,7 @@ import net.minecraft.world.phys.Vec2;
 import java.awt.*;
 
 public class BonesFrame implements TooltipFrame {
-    private static final ResourceLocation DECOR = new ResourceLocation(ObscureTooltips.MODID, "tooltips/builtin/decoration/bones.png");
+    private static final ResourceLocation DECOR = new ResourceLocation(ObscureTooltips.MODID, "textures/tooltips/animated/bones.png");
 
     @Override
     public void render(TooltipRenderer renderer, Vec2 pos, Point size) {

@@ -1,0 +1,11 @@
+### Syntax
+
+    "priority": <integer>
+    - Presets with higher priority override presets with lower priority.
+    - Effects stacks if their category allows stacking (e.g. "rim_lighting" effect can't stack).
+
+    "panel": <ID> (optional)
+    "frame": <ID> (optional)
+    "icon": <ID> (optional)
+    "effects": [<IDs>] (optional)
+    "filter": {<keys>} (see parent .readme.txt for details)

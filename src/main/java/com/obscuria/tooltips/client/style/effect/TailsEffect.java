@@ -52,4 +52,9 @@ public class TailsEffect implements TooltipEffect {
                         : timelapse < 2f + verticalMod ? new Vec2((pos.x+size.x) - size.x*(timelapse-(1f+verticalMod)), pos.y+size.y)
                         : new Vec2(pos.x, (pos.y+size.y) - size.y*((timelapse-(2f+verticalMod))/verticalMod));
     }
+
+    @Override
+    public boolean canStackWith(TooltipEffect other) {
+        return !(other instanceof TailsEffect);
+    }
 }
