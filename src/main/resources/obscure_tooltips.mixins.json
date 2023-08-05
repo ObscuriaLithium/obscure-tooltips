@@ -3,6 +3,7 @@
   "minVersion": "0.8",
   "package": "com.obscuria.tooltips.mixin",
   "compatibilityLevel": "JAVA_17",
+  "refmap": "obscure_tooltips.refmap.json",
   "mixins": [],
   "client": [
     "GuiGraphicsMixin"
