@@ -18,7 +18,7 @@ import java.util.List;
 @Mixin(value = GuiGraphics.class, priority = 0)
 public abstract class GuiGraphicsMixin {
 
-    @Shadow private ItemStack tooltipStack;
+    @Shadow(remap = false) private ItemStack tooltipStack;
 
     @Inject(method = "renderTooltipInternal", at = @At("HEAD"), cancellable = true)
     private void renderTooltip(Font font, List<ClientTooltipComponent> components, int x, int y, ClientTooltipPositioner positioner, CallbackInfo ci) {
