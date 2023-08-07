@@ -1,6 +1,6 @@
 package com.obscuria.tooltips.client.style.frame;
 
-import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec2;
 
@@ -14,12 +14,12 @@ public class TextureFrame implements TooltipFrame {
     }
 
     @Override
-    public void render(TooltipRenderer renderer, Vec2 pos, Point size) {
-        renderer.blit(TEXTURE, (int) pos.x + size.x / 2 - 30, (int) pos.y - 10, 10, 0, 60, 16, 80, 32);
-        renderer.blit(TEXTURE, (int) pos.x + size.x / 2 - 30, (int) pos.y + size.y - 6, 10, 16, 60, 16, 80, 32);
-        renderer.blit(TEXTURE, (int) pos.x - 5, (int) pos.y - 5, 0, 0, 10, 10, 80, 32);
-        renderer.blit(TEXTURE, (int) pos.x + size.x - 5, (int) pos.y - 5, 70, 0, 10, 10, 80, 32);
-        renderer.blit(TEXTURE, (int) pos.x - 5, (int) pos.y + size.y - 5, 0, 22, 10, 10, 80, 32);
-        renderer.blit(TEXTURE, (int) pos.x + size.x - 5, (int) pos.y + size.y - 5, 70, 22, 10, 10, 80, 32);
+    public void render(TooltipContext context, Vec2 pos, Point size) {
+        context.blit(TEXTURE, (int) pos.x + size.x / 2 - 30, (int) pos.y - 10, 10, 0, 60, 16, 80, 32);
+        context.blit(TEXTURE, (int) pos.x + size.x / 2 - 30, (int) pos.y + size.y - 6, 10, 16, 60, 16, 80, 32);
+        context.blit(TEXTURE, (int) pos.x - 5, (int) pos.y - 5, 0, 0, 10, 10, 80, 32);
+        context.blit(TEXTURE, (int) pos.x + size.x - 5, (int) pos.y - 5, 70, 0, 10, 10, 80, 32);
+        context.blit(TEXTURE, (int) pos.x - 5, (int) pos.y + size.y - 5, 0, 22, 10, 10, 80, 32);
+        context.blit(TEXTURE, (int) pos.x + size.x - 5, (int) pos.y + size.y - 5, 70, 22, 10, 10, 80, 32);
     }
 }

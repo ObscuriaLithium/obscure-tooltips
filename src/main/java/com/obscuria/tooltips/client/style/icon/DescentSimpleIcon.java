@@ -1,17 +1,17 @@
 package com.obscuria.tooltips.client.style.icon;
 
-import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 
 public class DescentSimpleIcon implements TooltipIcon {
 
     @Override
-    public void render(TooltipRenderer renderer, int x, int y) {
-        float scale = renderer.time() < 0.25
-                ? (1f - (float) Math.pow(1f - renderer.time() * 4, 3)) * 1.5f
-                : renderer.time() < 0.5
-                ? 1.5f - (1f - (float) Math.pow(1f - (renderer.time() - 0.25f) * 4, 3)) * 0.25f
+    public void render(TooltipContext context, int x, int y) {
+        float scale = context.time() < 0.25
+                ? (1f - (float) Math.pow(1f - context.time() * 4, 3)) * 1.5f
+                : context.time() < 0.5
+                ? 1.5f - (1f - (float) Math.pow(1f - (context.time() - 0.25f) * 4, 3)) * 0.25f
                 : 1.25f;
-        renderer.scale(scale, scale, scale);
-        renderer.context().renderItem(renderer.stack(), x, y);
+        context.scale(scale, scale, scale);
+        context.context().renderItem(context.stack(), x, y);
     }
 }

@@ -1,7 +1,7 @@
 package com.obscuria.tooltips.mixin;
 
-import com.obscuria.tooltips.client.renderer.TooltipBuilder;
 import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
@@ -22,6 +22,6 @@ public abstract class GuiGraphicsMixin {
 
     @Inject(method = "renderTooltipInternal", at = @At("HEAD"), cancellable = true)
     private void renderTooltip(Font font, List<ClientTooltipComponent> components, int x, int y, ClientTooltipPositioner positioner, CallbackInfo ci) {
-        if (TooltipBuilder.build(new TooltipRenderer((GuiGraphics) ((Object)this)), this.tooltipStack, font, components, x, y, positioner)) ci.cancel();
+        if (TooltipRenderer.render(new TooltipContext((GuiGraphics) ((Object)this)), this.tooltipStack, font, components, x, y, positioner)) ci.cancel();
     }
 }

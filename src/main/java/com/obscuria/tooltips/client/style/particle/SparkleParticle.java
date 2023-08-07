@@ -1,7 +1,7 @@
 package com.obscuria.tooltips.client.style.particle;
 
 import com.mojang.math.Axis;
-import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec2;
 
@@ -19,22 +19,22 @@ public class SparkleParticle extends TooltipParticle {
     }
 
     @Override
-    public void renderParticle(TooltipRenderer renderer, float lifetime) {
+    public void renderParticle(TooltipContext context, float lifetime) {
         final float mod = 1f - (float) Math.pow(1f - lifetime / MAX_LIFETIME, 3f);
         final float scale = mod < 0.5f ? mod * 2f : mod < 0.8f ? 1f : 1f - (mod - 0.8f) / 0.2f;
-        renderer.push(() -> {
-            renderer.translate(
+        context.push(() -> {
+            context.translate(
                     Mth.lerp(mod, position.x, end.x),
                     Mth.lerp(mod, position.y, end.y), 0f);
-            renderer.scale(scale, scale, scale);
-            renderer.mul(Axis.ZP.rotation((float) Math.pow(lifetime, 4f)));
-            renderer.push(() -> {
-                renderer.translate(-0.5f, 0.5f, 0f);
-                renderer.fill(0, 0, 1, 1, CENTER_COLOR);
-                renderer.fill(-1, 0, 1, 1, EDGE_COLOR);
-                renderer.fill(1, 0, 1, 1, EDGE_COLOR);
-                renderer.fill(0, -1, 1, 1, EDGE_COLOR);
-                renderer.fill(0, 1, 1, 1, EDGE_COLOR);
+            context.scale(scale, scale, scale);
+            context.mul(Axis.ZP.rotation((float) Math.pow(lifetime, 4f)));
+            context.push(() -> {
+                context.translate(-0.5f, 0.5f, 0f);
+                context.fill(0, 0, 1, 1, CENTER_COLOR);
+                context.fill(-1, 0, 1, 1, EDGE_COLOR);
+                context.fill(1, 0, 1, 1, EDGE_COLOR);
+                context.fill(0, -1, 1, 1, EDGE_COLOR);
+                context.fill(0, 1, 1, 1, EDGE_COLOR);
             });
         });
     }

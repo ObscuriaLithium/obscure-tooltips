@@ -1,7 +1,7 @@
 package com.obscuria.tooltips.client.style.effect;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 import com.obscuria.tooltips.client.style.particle.LineParticle;
 import com.obscuria.tooltips.client.style.particle.TooltipParticle;
 import net.minecraft.client.renderer.RenderType;
@@ -29,38 +29,38 @@ public class RimLightingEffect implements TooltipEffect {
     }
 
     @Override
-    public void render(TooltipRenderer renderer, Vec2 pos, Point size) {
+    public void render(TooltipContext context, Vec2 pos, Point size) {
         size = new Point(size.x + 8, size.y + 8);
         final Vec2 start = pos.add(-4);
-        final float width = 10f + 5f * (float) Math.cos(renderer.time());
+        final float width = 10f + 5f * (float) Math.cos(context.time());
 
-        Matrix4f matrix4f = renderer.pose().last().pose();
-        VertexConsumer buffer = renderer.bufferSource().getBuffer(RenderType.guiOverlay());
+        Matrix4f matrix4f = context.pose().last().pose();
+        VertexConsumer buffer = context.bufferSource().getBuffer(RenderType.guiOverlay());
         buffer.vertex(matrix4f, start.x, start.y, 0).color(START).endVertex();
         buffer.vertex(matrix4f, start.x, start.y + size.y, 0).color(START).endVertex();
         buffer.vertex(matrix4f, start.x + width, start.y + size.y - width, 0).color(END).endVertex();
         buffer.vertex(matrix4f, start.x + width, start.y + width, 0).color(END).endVertex();
 
-        buffer = renderer.bufferSource().getBuffer(RenderType.guiOverlay());
+        buffer = context.bufferSource().getBuffer(RenderType.guiOverlay());
         buffer.vertex(matrix4f, start.x, start.y, 0).color(START).endVertex();
         buffer.vertex(matrix4f, start.x + width, start.y + width, 0).color(END).endVertex();
         buffer.vertex(matrix4f, start.x + size.x - width, start.y + width, 0).color(END).endVertex();
         buffer.vertex(matrix4f, start.x + size.x, start.y, 0).color(START).endVertex();
 
-        buffer = renderer.bufferSource().getBuffer(RenderType.guiOverlay());
+        buffer = context.bufferSource().getBuffer(RenderType.guiOverlay());
         buffer.vertex(matrix4f, start.x + size.x - width, start.y + width, 0).color(END).endVertex();
         buffer.vertex(matrix4f, start.x + size.x - width, start.y + size.y - width, 0).color(END).endVertex();
         buffer.vertex(matrix4f, start.x + size.x, start.y + size.y, 0).color(START).endVertex();
         buffer.vertex(matrix4f, start.x + size.x, start.y, 0).color(START).endVertex();
 
-        buffer = renderer.bufferSource().getBuffer(RenderType.guiOverlay());
+        buffer = context.bufferSource().getBuffer(RenderType.guiOverlay());
         buffer.vertex(matrix4f, start.x + width, start.y + size.y - width, 0).color(END).endVertex();
         buffer.vertex(matrix4f, start.x, start.y + size.y, 0).color(START).endVertex();
         buffer.vertex(matrix4f, start.x + size.x, start.y + size.y, 0).color(START).endVertex();
         buffer.vertex(matrix4f, start.x + size.x - width, start.y + size.y - width, 0).color(END).endVertex();
 
-        if (renderer.time() - lastParticle >= 0.1f) {
-            lastParticle = renderer.time();
+        if (context.time() - lastParticle >= 0.1f) {
+            lastParticle = context.time();
             final Vec2 center = new Vec2(start.x + size.x * 0.5f, start.y + size.y * 0.5f);
             final int edge = RandomUtils.nextInt(1, 5);
             final float mod = RandomUtils.nextFloat(0f, 1f);
@@ -70,9 +70,9 @@ public class RimLightingEffect implements TooltipEffect {
                 case 3 -> new Vec2(start.x + size.y * mod, start.y);
                 default -> new Vec2(start.x + size.y * mod, start.y + size.y);
             };
-            particles.add(new LineParticle(PARTICLE_CENTER, PARTICLE_EDGE, 1f, from, renderer.lerp(from, center, 0.25f)));
+            particles.add(new LineParticle(PARTICLE_CENTER, PARTICLE_EDGE, 1f, from, context.lerp(from, center, 0.25f)));
         }
-        renderer.renderParticles(particles);
+        context.renderParticles(particles);
     }
 
     @Override

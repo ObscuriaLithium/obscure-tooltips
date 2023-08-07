@@ -1,6 +1,6 @@
 package com.obscuria.tooltips.client.style.effect;
 
-import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 import com.obscuria.tooltips.client.style.Effects;
 import com.obscuria.tooltips.client.style.particle.EnderParticle;
 import com.obscuria.tooltips.client.style.particle.TooltipParticle;
@@ -22,13 +22,13 @@ public class EnderEffect implements TooltipEffect {
     }
 
     @Override
-    public void render(TooltipRenderer renderer, Vec2 pos, Point size) {
-        if (renderer.time() - lastParticle >= 0.25f) {
-            lastParticle = renderer.time();
+    public void render(TooltipContext context, Vec2 pos, Point size) {
+        if (context.time() - lastParticle >= 0.25f) {
+            lastParticle = context.time();
             final Vec2 center = new Vec2(pos.x + 13, pos.y + 13);
             particles.add(new EnderParticle(CENTER_COLOR, EDGE_COLOR, 3f, center, 13f));
         }
-        renderer.renderParticles(particles);
+        context.renderParticles(particles);
     }
 
     @Override

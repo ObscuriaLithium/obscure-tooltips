@@ -1,6 +1,6 @@
 package com.obscuria.tooltips.client.style.effect;
 
-import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 import com.obscuria.tooltips.client.style.particle.SparkleParticle;
 import com.obscuria.tooltips.client.style.particle.TooltipParticle;
 import net.minecraft.world.phys.Vec2;
@@ -15,8 +15,8 @@ public class TailsEffect implements TooltipEffect {
     private float lastParticle = 0f;
 
     @Override
-    public void render(TooltipRenderer renderer, Vec2 pos, Point size) {
-        final float time = renderer.time() * 0.5f;
+    public void render(TooltipContext context, Vec2 pos, Point size) {
+        final float time = context.time() * 0.5f;
         size = new Point(size.x + 6, size.y + 6);
         final Vec2 start = pos.add(-3);
         final Vec2 tail1 = calculateTail(start, size, time, 0f);
@@ -35,7 +35,7 @@ public class TailsEffect implements TooltipEffect {
                     tail2.x + (float) Math.cos(rotation) * radius,
                     tail2.y + (float) Math.sin(rotation) * radius)));
         }
-        renderer.renderParticles(particles);
+        context.renderParticles(particles);
     }
 
     @Override

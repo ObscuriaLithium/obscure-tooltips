@@ -2,7 +2,7 @@ package com.obscuria.tooltips.client.style;
 
 import com.google.common.collect.ImmutableList;
 import com.obscuria.tooltips.client.StyleManager;
-import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 import com.obscuria.tooltips.client.style.effect.TooltipEffect;
 import com.obscuria.tooltips.client.style.frame.TooltipFrame;
 import com.obscuria.tooltips.client.style.icon.TooltipIcon;
@@ -29,14 +29,14 @@ public final class TooltipStyle {
         ICON = icon;
     }
 
-    public void renderBack(TooltipRenderer renderer, Vec2 pos, Point size, boolean slot) {
+    public void renderBack(TooltipContext renderer, Vec2 pos, Point size, boolean slot) {
         renderer.pose().pushPose();
-        renderer.pose().translate(0, 0, -100);
+        renderer.pose().translate(0, 0, -50);
         PANEL.render(renderer, pos, size, slot);
         renderer.pose().popPose();
     }
 
-    public void renderFront(TooltipRenderer renderer, Vec2 pos, Point size) {
+    public void renderFront(TooltipContext renderer, Vec2 pos, Point size) {
         renderEffects(Effects.Order.LAYER_3_TEXT$FRAME, renderer, pos, size);
         renderer.push(() -> {
             renderer.translate(0, 0, -50);
@@ -49,7 +49,7 @@ public final class TooltipStyle {
         });
     }
 
-    public void renderEffects(Effects.Order order, TooltipRenderer renderer, Vec2 pos, Point size) {
+    public void renderEffects(Effects.Order order, TooltipContext renderer, Vec2 pos, Point size) {
         renderer.push(() -> {
             renderer.translate(0, 0, switch (order) {
                 case LAYER_1_BACK -> 0;

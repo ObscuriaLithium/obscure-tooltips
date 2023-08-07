@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.obscuria.tooltips.ObscureTooltips;
-import com.obscuria.tooltips.client.renderer.TooltipBuilder;
+import com.obscuria.tooltips.client.renderer.TooltipRenderer;
 import com.obscuria.tooltips.client.style.StyleFilter;
 import com.obscuria.tooltips.client.style.TooltipStylePreset;
 import com.obscuria.tooltips.client.style.effect.TooltipEffect;
@@ -67,7 +67,7 @@ public final class ResourceLoader implements ResourceManagerReloadListener {
 
     @Override
     public void onResourceManagerReload(ResourceManager manager) {
-        TooltipBuilder.clear();
+        TooltipRenderer.clear();
         clear();
         manager.listPacks().forEach(pack -> {
             for (String namespace: pack.getNamespaces(PackType.CLIENT_RESOURCES)) {

@@ -1,7 +1,7 @@
 package com.obscuria.tooltips.client.style.particle;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec2;
@@ -25,22 +25,22 @@ public class CircleParticle extends TooltipParticle {
     }
 
     @Override
-    public void renderParticle(TooltipRenderer renderer, float lifetime) {
+    public void renderParticle(TooltipContext context, float lifetime) {
         final float mod = 1f - (float) Math.pow(1f - lifetime / MAX_LIFETIME, 3f);
         final float scale = mod < 0.5f ? mod * 2f : mod < 0.8f ? 1f : 1f - (mod - 0.8f) / 0.2f;
-        renderer.push(() -> {
-            renderer.translate(
+        context.push(() -> {
+            context.translate(
                     Mth.lerp(mod, position.x, end.x),
                     Mth.lerp(mod, position.y, end.y), 0f);
-            renderer.scale(scale, scale, scale);
-            renderer.push(() -> {
+            context.scale(scale, scale, scale);
+            context.push(() -> {
                 for (float i = 0f; i < 2f; i += 0.2f) {
                     final double d1 = Math.PI * (i + 0.1f);
                     final double d2 = Math.PI * (i - 0.1f);
                     final Vector2f first = new Vector2f((float) (Math.cos(d1) * RADIUS), (float) (Math.sin(d1) * RADIUS));
                     final Vector2f second = new Vector2f((float) (Math.cos(d2) * RADIUS), (float) (Math.sin(d2) * RADIUS));
-                    Matrix4f matrix4f = renderer.pose().last().pose();
-                    VertexConsumer vertexconsumer = renderer.context().bufferSource().getBuffer(RenderType.guiOverlay());
+                    Matrix4f matrix4f = context.pose().last().pose();
+                    VertexConsumer vertexconsumer = context.context().bufferSource().getBuffer(RenderType.guiOverlay());
                     vertexconsumer.vertex(matrix4f, 0, 0, 0).color(START_COLOR).endVertex();
                     vertexconsumer.vertex(matrix4f, 0, 0, 0).color(START_COLOR).endVertex();
                     vertexconsumer.vertex(matrix4f, first.x, first.y, 0).color(END_COLOR).endVertex();

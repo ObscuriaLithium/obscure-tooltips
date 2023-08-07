@@ -1,11 +1,11 @@
 package com.obscuria.tooltips.client.style.icon;
 
-import com.obscuria.tooltips.client.renderer.TooltipRenderer;
+import com.obscuria.tooltips.client.renderer.TooltipContext;
 
 public class ConstantRotationIcon implements TooltipIcon {
 
     @Override
-    public void render(TooltipRenderer renderer, int x, int y) {
-        renderer.context().renderItem(renderer.stack(), x, y);
+    public void render(TooltipContext context, int x, int y) {
+        context.context().renderItem(context.stack(), x, y);
     }
 }
