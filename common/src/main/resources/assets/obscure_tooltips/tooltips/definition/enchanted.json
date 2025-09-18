@@ -1,0 +1,8 @@
+{
+  "priority": 200,
+  "style": "obscure_tooltips:enchanted",
+  "filter": {
+    "type": "obscure_tooltips:enchantment",
+    "any_enchantment": true
+  }
+}

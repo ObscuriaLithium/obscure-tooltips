@@ -1,0 +1,43 @@
+[versions]
+java = "17"
+kotlin = "2.0.21"
+moddev = "2.0.52-beta"
+loom = "1.9-SNAPSHOT"
+dokka = "1.9.20"
+
+minecraft = "1.20.1"
+minecraftRange = "[1.20.1, 1.20.2)"
+
+parchment = "2023.09.03"
+parchmentMC = "1.20.1"
+
+forge = "1.20.1-47.3.0"
+forgeRange = "[47.1, 48)"
+neoForm = "1.20.1"
+kff = "4.11.0"
+kffRange = "[4, )"
+
+fabricLoader = "0.16.9"
+fabricApi = "0.92.2+1.20.1"
+flk = "1.12.3+kotlin.2.0.21"
+
+mixin = "0.8.5"
+
+fragmentum = "1.20.1-0.0.50"
+
+[libraries]
+minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }
+fabricLoader = { group = "net.fabricmc", name = "fabric-loader", version.ref = "fabricLoader" }
+fabricApi = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.ref = "fabricApi" }
+flk = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "flk" }
+kff = { group = "thedarkcolour", name = "kotlinforforge", version.ref = "kff" }
+mixin = { group = "org.spongepowered", name = "mixin", version.ref = "mixin" }
+fragmentumApi = { group = "dev.obscuria", name = "fragmentum-api", version.ref = "fragmentum" }
+fragmentumFabric = { group = "dev.obscuria", name = "fragmentum-fabric", version.ref = "fragmentum" }
+fragmentumForge = { group = "dev.obscuria", name = "fragmentum-fabric", version.ref = "fragmentum" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+moddev = { id = "net.neoforged.moddev.legacyforge", version.ref = "moddev" }
+loom = { id = "fabric-loom", version.ref = "loom" }

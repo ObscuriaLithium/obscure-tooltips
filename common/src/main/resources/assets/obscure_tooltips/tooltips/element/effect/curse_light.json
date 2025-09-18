@@ -1,0 +1,15 @@
+{
+  "type": "obscure_tooltips:rim_light",
+  "outer_palette": {
+    "top_left": "#30FF0020",
+    "top_right": "#30FF0020",
+    "bottom_left": "#30FF0020",
+    "bottom_right": "#30FF0020"
+  },
+  "inner_palette": {
+    "top_left": "#00FF0020",
+    "top_right": "#00FF0020",
+    "bottom_left": "#00FF0020",
+    "bottom_right": "#00FF0020"
+  }
+}

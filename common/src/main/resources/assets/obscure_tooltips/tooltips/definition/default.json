@@ -1,0 +1,7 @@
+{
+  "priority": 0,
+  "style": "obscure_tooltips:default",
+  "filter": {
+    "type": "obscure_tooltips:always"
+  }
+}

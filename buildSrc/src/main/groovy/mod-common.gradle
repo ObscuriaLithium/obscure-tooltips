@@ -1,0 +1,148 @@
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id "org.jetbrains.kotlin.jvm"
+    id "org.jetbrains.dokka"
+}
+
+base {
+    archivesName = "${modId}-${project.name}-${libs.versions.minecraft.get()}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
+    withSourcesJar()
+    withJavadocJar()
+}
+
+kotlin {
+    jvmToolchain(Integer.parseInt(libs.versions.java.get()))
+}
+
+repositories {
+    mavenCentral()
+    exclusiveContent {
+        forRepositories(
+                maven {
+                    name = 'ParchmentMC'
+                    url = 'https://maven.parchmentmc.org/'
+                },
+                maven {
+                    name = "Forge"
+                    url = 'https://maven.minecraftforge.net'
+                }
+        )
+        filter { includeGroup('org.parchmentmc.data') }
+    }
+    maven {
+        name = 'BlameJared'
+        url = 'https://maven.blamejared.com'
+    }
+    maven {
+        name = "kotlinforforge"
+        url = uri("https://thedarkcolour.github.io/KotlinForForge/")
+    }
+}
+
+// Declare capabilities on the outgoing configurations.
+// Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
+['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
+    configurations."$variant".outgoing {
+        capability("$group:${base.archivesName.get()}:$version")
+        capability("$group:$modId-${project.name}-${libs.versions.minecraft.get()}:$version")
+        capability("$group:$modId:$version")
+    }
+    publishing.publications.configureEach {
+        suppressPomMetadataWarningsFor(variant)
+    }
+}
+
+sourcesJar {
+    from(rootProject.file('LICENSE')) {
+        rename { "${it}_${modId}" }
+    }
+}
+
+jar {
+    from(rootProject.file('LICENSE')) {
+        rename { "${it}_${modId}" }
+    }
+
+    manifest {
+        attributes([
+                'Specification-Title'   : modName,
+                'Specification-Vendor'  : modAuthor,
+                'Specification-Version' : project.jar.archiveVersion,
+                'Implementation-Title'  : project.name,
+                'Implementation-Version': project.jar.archiveVersion,
+                'Implementation-Vendor' : modAuthor,
+                'Built-On-Minecraft'    : libs.versions.minecraft.get()
+        ])
+    }
+}
+
+tasks.withType(DokkaTaskPartial).configureEach {
+    dokkaSourceSets.configureEach {
+        includeNonPublic = false
+        skipDeprecated = false
+        reportUndocumented = false
+        jdkVersion = Integer.parseInt(libs.versions.java.get())
+        sourceRoots.from(sourceSets.main.allSource)
+    }
+}
+
+// Prevent the default javadoc task from running, as Dokka is
+// responsible for generating the docs now
+tasks.named("javadoc", Javadoc) {
+    enabled = false
+}
+
+// Make the javadoc jar take in the Dokka output
+tasks.named("javadocJar", Jar) {
+    dependsOn(tasks.named("dokkaJavadoc"))
+    from(tasks.named("dokkaJavadoc"))
+}
+
+processResources {
+    var expandProps = [
+            'version'                      : version,
+            'group'                        : project.group,
+            'minecraft_version'            : libs.versions.minecraft.get(),
+            'minecraft_version_range'      : libs.versions.minecraftRange.get(),
+            'fabric_version'               : libs.versions.fabricApi.get(),
+            'fabric_loader_version'        : libs.versions.fabricLoader.get(),
+            'flk_version'                  : libs.versions.flk.get(),
+            'mod_name'                     : modName,
+            'mod_author'                   : modAuthor,
+            'mod_id'                       : modId,
+            'license'                      : license,
+            'description'                  : project.description,
+            'forge_version'                : libs.versions.forge.get(),
+            'forge_range'                  : libs.versions.forgeRange.get(),
+            'kff_version'                  : libs.versions.kff.get(),
+            'kff_version_range'            : libs.versions.kffRange.get(),
+            'credits'                      : credits,
+            'java_version'                 : libs.versions.java.get()
+    ]
+
+    filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/*mods.toml', '*.mixins.json']) {
+        expand expandProps
+    }
+    inputs.properties(expandProps)
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifactId base.archivesName.get()
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url System.getenv('local_maven_url')
+        }
+    }
+}

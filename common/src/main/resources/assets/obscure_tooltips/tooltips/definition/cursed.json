@@ -1,0 +1,8 @@
+{
+  "priority": 300,
+  "style": "obscure_tooltips:cursed",
+  "filter": {
+    "type": "obscure_tooltips:enchantment",
+    "any_curse": true
+  }
+}
