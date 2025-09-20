@@ -20,7 +20,7 @@ interface ILabelProvider {
 
             registrar("rarity", RarityLabelProvider::CODEC)
             registrar("literal", LiteralLabelProvider::CODEC)
-            registrar("translatable", LiteralLabelProvider::CODEC)
+            registrar("translatable", TranslatableLabelProvider::CODEC)
         }
     }
 }
