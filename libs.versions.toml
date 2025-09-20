@@ -23,7 +23,7 @@ flk = "1.12.3+kotlin.2.0.21"
 
 mixin = "0.8.5"
 
-fragmentum = "1.20.1-0.0.50"
+fragmentum = "1.20.1-0.0.51"
 
 [libraries]
 minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }

@@ -1,6 +1,6 @@
 package dev.obscuria.tooltips.mixin;
 
-import dev.obscuria.tooltips.client.TooltipStyleManager;
+import dev.obscuria.tooltips.registry.TooltipsManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.main.GameConfig;
 import net.minecraft.server.packs.resources.ReloadableResourceManager;
@@ -23,6 +23,6 @@ public class MixinMinecraft
             target = "(Lnet/minecraft/client/renderer/texture/TextureManager;)Lnet/minecraft/client/resources/MobEffectTextureManager;"))
     private void init(GameConfig config, CallbackInfo info)
     {
-        this.resourceManager.registerReloadListener(TooltipStyleManager.INSTANCE);
+        this.resourceManager.registerReloadListener(TooltipsManager.INSTANCE);
     }
 }

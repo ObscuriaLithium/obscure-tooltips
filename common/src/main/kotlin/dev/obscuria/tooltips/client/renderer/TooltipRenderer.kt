@@ -1,12 +1,11 @@
 package dev.obscuria.tooltips.client.renderer
 
 import dev.obscuria.tooltips.client.TooltipDefinition
-import dev.obscuria.tooltips.client.style.TooltipStyle
+import dev.obscuria.tooltips.client.TooltipLabel
 import net.minecraft.client.gui.Font
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner
-import net.minecraft.network.chat.Component
 import net.minecraft.world.item.ItemStack
 import kotlin.jvm.optionals.getOrNull
 
@@ -14,7 +13,7 @@ object TooltipRenderer {
 
     private var lastStack: ItemStack = ItemStack.EMPTY
     private var actualStack: ItemStack = ItemStack.EMPTY
-    private var style: TooltipStyle = TooltipStyle.EMPTY
+    private var context: TooltipContext = TooltipContext()
 
     fun render(
         graphics: GuiGraphics,
@@ -29,11 +28,12 @@ object TooltipRenderer {
         if (components.isEmpty()) return false
 
         val title = components.removeFirst()
-        val label = ClientTooltipComponent.create(Component.literal("Rarity").visualOrderText)
-        components.add(0, HeaderComponent(actualStack, style, title, label))
+        val label = context.label?.bake(actualStack) ?: BlankComponent
+        val minWidth = components.maxOf { it.getWidth(font) }
+        components.add(0, HeaderComponent(minWidth, context, title, label))
 
         val width = components.maxOf { it.getWidth(font) }
-        val height = components.sumOf { it.height } + if (components.size == 1) -2 else 0
+        val height = components.sumOf { it.height } - 2
 
         val pos = positioner.positionTooltip(graphics.guiWidth(), graphics.guiHeight(), mouseX, mouseY, width, height)
 
@@ -41,12 +41,12 @@ object TooltipRenderer {
         graphics.pose().translate(0f, 0f, 400f)
 
         graphics.flush()
-        style.panel.getOrNull()?.render(graphics, pos.x(), pos.y(), width, height)
-        style.effects.forEach { it.render(graphics, pos.x(), pos.y(), width, height) }
+        context.style.panel.getOrNull()?.render(graphics, pos.x(), pos.y(), width, height)
+        context.style.effects.forEach { it.renderBack(graphics, context, pos.x(), pos.y(), width, height) }
 
         graphics.pose().pushPose()
         graphics.pose().translate(0f, 0f, 2f)
-        style.frame.getOrNull()?.render(graphics, pos.x(), pos.y(), width, height)
+        context.style.frame.getOrNull()?.render(graphics, pos.x(), pos.y(), width, height)
         graphics.pose().popPose()
 
         graphics.flush()
@@ -62,12 +62,17 @@ object TooltipRenderer {
 
         lastStack = actualStack
         actualStack = ItemStack.EMPTY
+        context.removeExpiredParticles()
         return true
     }
 
     fun setTooltipStack(stack: ItemStack) {
         actualStack = stack
         if (ItemStack.isSameItemSameTags(lastStack, actualStack)) return
-        style = TooltipDefinition.aggregateStyleFor(stack)
+        context = TooltipContext(
+            stack = actualStack,
+            style = TooltipDefinition.aggregateStyleFor(stack),
+            label = TooltipLabel.findFor(stack)
+        )
     }
 }

@@ -1,5 +1,6 @@
 {
   "effects": [
-    "obscure_tooltips:curse_light"
+    "obscure_tooltips:curse_light",
+    "obscure_tooltips:curse_particles"
   ]
 }

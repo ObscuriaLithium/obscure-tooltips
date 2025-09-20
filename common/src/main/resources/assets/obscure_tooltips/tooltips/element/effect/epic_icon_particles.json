@@ -1,0 +1,9 @@
+{
+  "type": "obscure_tooltips:icon_particle",
+  "particle": {
+    "type": "obscure_tooltips:texture",
+    "texture": "obscure_tooltips:textures/gui/particle/star.png",
+    "offset": [ -0.5, -0.5, 0.0 ],
+    "scale": 1.5
+  }
+}

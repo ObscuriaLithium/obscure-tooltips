@@ -1,5 +1,6 @@
 {
   "effects": [
-    "obscure_tooltips:enchantment_light"
+    "obscure_tooltips:enchantment_light",
+    "obscure_tooltips:enchantment_particles"
   ]
 }

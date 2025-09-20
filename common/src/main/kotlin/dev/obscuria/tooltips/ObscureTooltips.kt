@@ -9,8 +9,6 @@ object ObscureTooltips {
 
     const val MODID = "obscure_tooltips"
     const val DISPLAY_NAME = "Obscure Tooltips"
-
-    @JvmStatic
     val LOGGER: Logger = LoggerFactory.getLogger(DISPLAY_NAME)
 
     fun key(name: String): ResourceLocation {
