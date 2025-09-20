@@ -19,7 +19,7 @@ class ModFilter(
         val CODEC: Codec<ModFilter> = RecordCodecBuilder.create { codec ->
             codec.group(
                 Codec.STRING.listOf()
-                    .fieldOf("mod_ids")
+                    .fieldOf("mods")
                     .forGetter(ModFilter::modIds)
             ).apply(codec, ::ModFilter)
         }
