@@ -60,16 +60,11 @@ repositories {
 }
 
 sourcesJar {
-    from(rootProject.file('LICENSE')) {
-        rename { "${it}_${modId}" }
-    }
+    from(rootProject.file("LICENSE.md"))
 }
 
 jar {
-    from(rootProject.file('LICENSE')) {
-        rename { "${it}_${modId}" }
-    }
-
+    from(rootProject.file("LICENSE.md"))
     manifest {
         attributes([
                 'Specification-Title'   : modName,
@@ -114,6 +109,7 @@ processResources {
             'fabric_version'               : libs.versions.fabricApi.get(),
             'fabric_loader_version'        : libs.versions.fabricLoader.get(),
             'flk_version'                  : libs.versions.flk.get(),
+            'fragmentum_version'           : libs.versions.fragmentum.get().replace("${libs.versions.minecraft.get()}-", ""),
             'mod_name'                     : modName,
             'mod_author'                   : modAuthor,
             'mod_id'                       : modId,

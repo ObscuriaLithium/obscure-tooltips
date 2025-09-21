@@ -9,6 +9,10 @@
         "any_enchantment": true
       },
       {
+        "type": "obscure_tooltips:property",
+        "has_foil": true
+      },
+      {
         "type": "obscure_tooltips:item",
         "items": [
           "minecraft:enchanted_book"

@@ -8,8 +8,9 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/obscure-tooltips",
+        "sources": "https://github.com/ObscuriaLithium/obscure-tooltips",
+        "issues":"https://github.com/ObscuriaLithium/obscure-tooltips/issues"
     },
     "license": "${license}",
     "icon": "${mod_id}.png",
@@ -27,14 +28,22 @@
         "${mod_id}.fabric.mixins.json"
     ],
     "depends": {
+        "java": ">=${java_version}",
+        "minecraft": "${minecraft_version}",
         "fabricloader": ">=${fabric_loader_version}",
         "fabric-api": "*",
-        "minecraft": "${minecraft_version}",
-        "java": ">=${java_version}",
-        "fabric-language-kotlin": ">=${flk_version}"
+        "fabric-language-kotlin": ">=${flk_version}",
+        "fragmentum": ">=${fragmentum_version}"
     },
     "suggests": {
         "another-mod": "*"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://dsc.gg/obscuria"
+            }
+        }
     }
 }
   

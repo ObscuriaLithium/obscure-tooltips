@@ -7,9 +7,8 @@ val modId: String by project
 
 repositories {
     mavenLocal()
-    maven {
-        url = uri("https://cursemaven.com")
-    }
+    maven { url = uri("https://cursemaven.com") }
+    maven { url = uri("https://maven.terraformersmc.com/releases/") }
 }
 
 dependencies {
@@ -24,6 +23,7 @@ dependencies {
 
     modImplementation(libs.fragmentumFabric)
     modImplementation("curse.maven:emi-580555:6420944")
+    modImplementation("com.terraformersmc:modmenu:7.2.2")
 }
 
 loom {

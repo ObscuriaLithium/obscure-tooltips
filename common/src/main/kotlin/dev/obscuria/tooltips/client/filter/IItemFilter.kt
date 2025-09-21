@@ -27,6 +27,7 @@ interface IItemFilter {
             registrar("enchantment", EnchantmentFilter::CODEC)
             registrar("rarity", RarityFilter::CODEC)
             registrar("nbt", NbtFilter::CODEC)
+            registrar("property", PropertyFilter::CODEC)
         }
     }
 }
