@@ -4,6 +4,6 @@ plugins {
 }
 
 tasks.register("releaseAll") {
-    dependsOn("api:releaseApi", "fabric:releaseFabric", "forge:releaseForge")
+    dependsOn("fabric:releaseFabric", "forge:releaseForge")
     group = "build"
 }

@@ -51,23 +51,3 @@ tasks.register("releaseFabric") {
     }
 }
 
-publishing {
-    publications {
-        create("apiPublication", MavenPublication) {
-            groupId = "dev.obscuria"
-            artifactId = "fragmentum-fabric"
-            version = "${minecraft_version}-${version}"
-            artifact(tasks.named("jar").get()) {
-                classifier = null
-            }
-        }
-    }
-
-    repositories {
-        maven {
-            name = "local"
-            url = uri("${rootProject.projectDir}/output/repo")
-        }
-    }
-}
-
