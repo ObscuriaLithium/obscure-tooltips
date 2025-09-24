@@ -1,0 +1,42 @@
+{
+    "schemaVersion": 1,
+    "id": "obscure_tooltips",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "${curseforge}",
+        "sources": "${sources}",
+        "issues": "${issues}"
+    },
+    "license": "${license}",
+    "icon": "${mod_id}.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "dev.obscuria.tooltips.fabric.FabricObscureTooltips"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "depends": {
+        "java": ">=17",
+        "minecraft": ">=${minecraft_version}",
+        "fragmentum": ">=${fragmentum_version}",
+        "fabricloader": ">=0.14",
+        "fabric": "*"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "${discord}"
+            }
+        }
+    }
+}
+  

@@ -1,0 +1,23 @@
+{
+  "priority": 200,
+  "style": "obscure_tooltips:enchanted",
+  "filter": {
+    "type": "obscure_tooltips:any_of",
+    "terms": [
+      {
+        "type": "obscure_tooltips:enchantment",
+        "any_enchantment": true
+      },
+      {
+        "type": "obscure_tooltips:property",
+        "has_foil": true
+      },
+      {
+        "type": "obscure_tooltips:item",
+        "values": [
+          "minecraft:enchanted_book"
+        ]
+      }
+    ]
+  }
+}

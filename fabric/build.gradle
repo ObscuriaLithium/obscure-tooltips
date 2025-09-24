@@ -1,0 +1,73 @@
+plugins {
+    id 'multiloader-loader'
+    id 'fabric-loom'
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
+    }
+
+    modImplementation("dev.obscuria:fragmentum-fabric:1.20.1-${fragmentum_version}")
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    modImplementation("com.terraformersmc:modmenu:7.2.2")
+
+    implementation project(":common")
+}
+
+loom {
+    if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
+        accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
+    }
+    mixin {
+        defaultRefmapName.set("${mod_id}.refmap.json")
+    }
+    runs {
+        client {
+            client()
+            setConfigName("Fabric Client")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+        server {
+            server()
+            setConfigName("Fabric Server")
+            ideConfigGenerated(true)
+            runDir("run")
+        }
+    }
+}
+
+tasks.register("releaseFabric") {
+    dependsOn(tasks.named("build"))
+    doLast {
+        copy {
+            from(file("build/libs/${mod_id}-${project.name}-${minecraft_version}-${version}.jar"))
+            into(rootProject.file("output/$version"))
+        }
+    }
+}
+
+publishing {
+    publications {
+        create("apiPublication", MavenPublication) {
+            groupId = "dev.obscuria"
+            artifactId = "fragmentum-fabric"
+            version = "${minecraft_version}-${version}"
+            artifact(tasks.named("jar").get()) {
+                classifier = null
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "local"
+            url = uri("${rootProject.projectDir}/output/repo")
+        }
+    }
+}
+

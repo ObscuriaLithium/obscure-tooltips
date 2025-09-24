@@ -1,0 +1,9 @@
+{
+  "panel": "obscure_tooltips:golden",
+  "frame": "obscure_tooltips:golden",
+  "icon": "obscure_tooltips:epic",
+  "effects": [
+    "obscure_tooltips:epic_ray_glow",
+    "obscure_tooltips:epic_icon_particles"
+  ]
+}

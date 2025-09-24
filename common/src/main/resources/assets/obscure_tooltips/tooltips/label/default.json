@@ -1,0 +1,9 @@
+{
+  "priority": 0,
+  "provider": {
+    "type": "obscure_tooltips:rarity"
+  },
+  "filter": {
+    "type": "obscure_tooltips:always"
+  }
+}
