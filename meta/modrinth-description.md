@@ -40,7 +40,8 @@ Want your tooltips to look like arcane scrolls, neon cyberpunk frames, or cursed
 <center>
   <a href="https://modrinth.com/mod/loot-journal"><img style="display: inline;" src="https://i.imgur.com/1r2Ue5Y.png" width="25%" /></a> 
   <img style="display: inline;" src="https://i.imgur.com/xKaiQBp.png" width="25%" /> 
-  <img style="display: inline;" src="https://i.imgur.com/xKaiQBp.png" width="25%" /></center>
+  <img style="display: inline;" src="https://i.imgur.com/xKaiQBp.png" width="25%" />
+</center>
 <center>
   <a href="https://www.patreon.com/Obscuria"><img style="display: inline;" src="https://i.imgur.com/4lV9g9R.png" width="75%" /></a>
 </center>
