@@ -1,6 +1,6 @@
 {
-  "rarity.common": "nasa ala",
-  "rarity.uncommon": "nasa",
-  "rarity.rare": "mani",
-  "rarity.epic": "suli"
+  "rarity.common.name": "nasa ala",
+  "rarity.uncommon.name": "nasa",
+  "rarity.rare.name": "mani",
+  "rarity.epic.name": "suli"
 }
