@@ -1,3 +1,5 @@
+<img width=100% src="https://raw.githubusercontent.com/ObscuriaLithium/obscurialithium.github.io/refs/heads/main/assets/images/obscure-tooltips-logo.jpg">
+
 <center>
   <a href="https://www.curseforge.com/minecraft/mc-mods/obscure-tooltips" rel="nofollow"><img alt="Fabric" src="https://img.shields.io/badge/Fabric-5c2148?style=for-the-badge"></a> 
   <a href="https://www.curseforge.com/minecraft/mc-mods/obscure-tooltips" rel="nofollow"><img alt="Forge" src="https://img.shields.io/badge/Forge-5c2148?style=for-the-badge"></a> 
@@ -5,7 +7,9 @@
   <a href="https://discord.gg/jSHHJSUWdY" target="_blank" rel="nofollow"><img alt="Discord" src="https://img.shields.io/discord/899742852681191444?style=for-the-badge&logo=discord&logoColor=white&label=&labelColor=231C25&color=5c2a21"></a>
 </center>
 
-### <center>Obscure Tooltips is a client-side mod that enhances item tooltips with animated visual and particle effects, making rarer items more vibrant and eye-catching. Everything is fully customizable via resource packs, with detailed documentation available for creating your own styles.</center>
+<br>
+
+<center>Obscure Tooltips is a client-side mod that enhances item tooltips with animated visual and particle effects, making rarer items more vibrant and eye-catching. Everything is fully customizable via resource packs, with detailed documentation available for creating your own styles.</center>
 
 # <center>How to Start?</center>
 
