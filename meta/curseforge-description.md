@@ -11,7 +11,7 @@
 
 # <p style="text-align:center">How to Start?</p>
 
-Just install the mod and launch the game! The built-in resource pack animates item tooltips based on their rarity, enchantments, or curses. If you want to customize and expand the styles for your own modpack, [**check out the Wiki**](https://obscurialithium.github.io/obscure_tooltips/).
+Just install the mod and launch the game! The built-in resource pack animates item tooltips based on their rarity, enchantments, or curses. If you want to customize and expand the styles for your own modpack, [**check out the Wiki**](https://obscurialithium.github.io/obscure-tooltips).
 
 <img width=100% src=https://i.imgur.com/i7U9Xmk.gif>
 <p style="text-align:center">
@@ -30,7 +30,7 @@ Just install the mod and launch the game! The built-in resource pack animates it
 *   **Fully Customizable** – Create your own tooltip themes with resource packs. Every color, animation, and particle can be changed.
 *   **Modpack Friendly** – Designed to integrate seamlessly into any pack. Add unique flair to your items without touching the code.
 *   **Lightweight & Optimized** – Minimal performance impact, works great even on large modpacks.
-*   **Extensive Documentation** – [Step-by-step guides](https://obscurialithium.github.io/obscure_tooltips/) and examples to help you build tooltip styles in minutes.
+*   **Extensive Documentation** – [Step-by-step guides](https://obscurialithium.github.io/obscure-tooltips) and examples to help you build tooltip styles in minutes.
 
 ### Want your tooltips to look like arcane scrolls, neon cyberpunk frames, or cursed bloodstains? With Obscure Tooltips, you decide.
 
