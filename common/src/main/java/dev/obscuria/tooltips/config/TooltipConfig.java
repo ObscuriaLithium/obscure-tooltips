@@ -17,6 +17,7 @@ import java.util.function.Consumer;
 public final class TooltipConfig {
 
     public static final Layout client = new Layout();
+    public static final List<String> itemIDsBlacklist = new ArrayList<>();
     public static final List<Item> armorPreviewWhitelist = new ArrayList<>();
     public static final List<Item> armorPreviewBlacklist = new ArrayList<>();
     public static final List<Item> toolPreviewWhitelist = new ArrayList<>();
@@ -29,11 +30,13 @@ public final class TooltipConfig {
 
     private static void update(Layout layout) {
 
+        itemIDsBlacklist.clear();
         armorPreviewWhitelist.clear();
         armorPreviewBlacklist.clear();
         toolPreviewWhitelist.clear();
         toolPreviewBlacklist.clear();
 
+        itemIDsBlacklist.addAll(layout.itemsBlacklist);
         layout.armorPreviewWhitelist.forEach(id -> loadItem(id, armorPreviewWhitelist::add));
         layout.armorPreviewBlacklist.forEach(id -> loadItem(id, armorPreviewBlacklist::add));
         layout.toolPreviewWhitelist.forEach(id -> loadItem(id, toolPreviewWhitelist::add));
@@ -63,6 +66,9 @@ public final class TooltipConfig {
         @ConfigOptions.Comment("Whether Obscure Tooltips should display 3D tool/weapon previews.")
         public boolean toolPreviewEnabled = false;
 
+        @ConfigOptions.Value("itemsBlacklist")
+        @ConfigOptions.Comment("List of item IDs that will be ignored by Obscure Tooltips and will use vanilla Minecraft tooltips instead")
+        public List<String> itemsBlacklist = new ArrayList<>();
         @ConfigOptions.Value("armorPreviewWhitelist")
         @ConfigOptions.Comment("List of item IDs that should always display a 3D armor preview.")
         public List<String> armorPreviewWhitelist = new ArrayList<>();
