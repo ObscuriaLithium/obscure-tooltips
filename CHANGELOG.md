@@ -1,4 +1,0 @@
-- Added a new **Identifier Filter** that allows filtering ID strings by `contains`/`starts_with`/`ends_with` – useful for bulk style application to materials.
-- Fixed a startup crash related to Vibrant Tooltip hint injection.
-- Fixed a render crash caused by incorrect TooltipState casting.
-- Improved compatibility with mods that modify the tooltip component list before rendering.
