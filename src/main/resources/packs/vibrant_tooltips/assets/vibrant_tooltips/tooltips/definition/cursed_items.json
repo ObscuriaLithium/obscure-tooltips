@@ -1,0 +1,17 @@
+{
+  "priority": 300,
+  "style": "vibrant_tooltips:cursed",
+  "filter": {
+    "type": "obscure_tooltips:all_of",
+    "terms": [
+      {
+        "type": "obscure_tooltips:config",
+        "config_value": "@CURSED_STYLE_ENABLED"
+      },
+      {
+        "type": "obscure_tooltips:enchantment",
+        "any_curse": true
+      }
+    ]
+  }
+}

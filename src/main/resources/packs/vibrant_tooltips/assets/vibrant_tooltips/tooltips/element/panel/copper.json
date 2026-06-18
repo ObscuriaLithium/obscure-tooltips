@@ -1,0 +1,15 @@
+{
+  "type": "obscure_tooltips:color_rect",
+  "background_palette": {
+    "top_left": "@UNCOMMON_PANEL_BACKGROUND_TOP",
+    "top_right": "@UNCOMMON_PANEL_BACKGROUND_TOP",
+    "bottom_left": "@UNCOMMON_PANEL_BACKGROUND_BOTTOM",
+    "bottom_right": "@UNCOMMON_PANEL_BACKGROUND_BOTTOM"
+  },
+  "border_palette": {
+    "top_left": "@UNCOMMON_PANEL_BORDER_TOP",
+    "top_right": "@UNCOMMON_PANEL_BORDER_TOP",
+    "bottom_left": "@UNCOMMON_PANEL_BORDER_BOTTOM",
+    "bottom_right": "@UNCOMMON_PANEL_BORDER_BOTTOM"
+  }
+}

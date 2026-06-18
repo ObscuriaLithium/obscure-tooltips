@@ -1,0 +1,13 @@
+{
+  "type": "obscure_tooltips:accent_burst",
+  "transform": {
+    "offset": [ 0.0, 0.0, 0.0 ],
+    "scale": 1.0,
+    "rotation": 0.0
+  },
+  "sound": {
+    "value": "obscure_tooltips:effect.epic_poof",
+    "volume": 0.25,
+    "pitch": 1.0
+  }
+}
