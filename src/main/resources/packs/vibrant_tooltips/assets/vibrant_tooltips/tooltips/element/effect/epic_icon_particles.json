@@ -1,0 +1,12 @@
+{
+  "type": "obscure_tooltips:icon_particle",
+  "particle": {
+    "type": "obscure_tooltips:texture",
+    "texture": "vibrant_tooltips:textures/gui/particle/star.png",
+    "transform": {
+      "offset": [ -0.5, -0.5, 0.0 ],
+      "scale": 1.5,
+      "rotation": 0.0
+    }
+  }
+}

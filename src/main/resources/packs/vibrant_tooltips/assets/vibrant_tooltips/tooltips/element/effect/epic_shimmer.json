@@ -1,0 +1,8 @@
+{
+  "type": "obscure_tooltips:shimmer",
+  "inner_color": "@EPIC_SHIMMER_INNER",
+  "accent_color": "@EPIC_SHIMMER_ACCENT",
+  "outer_color": "@EPIC_SHIMMER_OUTER",
+  "frequency": 2.0,
+  "speed": 1.0
+}

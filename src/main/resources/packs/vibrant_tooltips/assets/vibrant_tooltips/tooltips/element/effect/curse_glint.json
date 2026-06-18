@@ -1,0 +1,69 @@
+{
+  "type": "obscure_tooltips:glint",
+  "segments": 100,
+  "clip_waves": true,
+  "clip_rings": true,
+  "waves": [
+    {
+      "color": "@CURSED_GLINT_PRIMARY_WAVE",
+      "position": 0.6,
+      "thickness": 0.3,
+      "inner_alpha": 1.0,
+      "outer_alpha": 0.0,
+      "inner_bias": -1.0,
+      "outer_bias": 1.0,
+      "flow_speed": 1.0,
+      "flow_offset": 0.0,
+      "intensity_offset": 0.0,
+      "vertical_fade": true
+    },
+    {
+      "color": "@CURSED_GLINT_PRIMARY_WAVE_GLOW",
+      "position": 0.6,
+      "thickness": 0.3,
+      "inner_alpha": 0.0,
+      "outer_alpha": 1.0,
+      "inner_bias": -1.8,
+      "outer_bias": -1.0,
+      "flow_speed": 1.0,
+      "flow_offset": 0.0,
+      "intensity_offset": 0.0,
+      "vertical_fade": true
+    },
+    {
+      "color": "@CURSED_GLINT_SECONDARY_WAVE",
+      "position": 0.6,
+      "thickness": 0.15,
+      "inner_alpha": 1.0,
+      "outer_alpha": 0.0,
+      "inner_bias": -1.0,
+      "outer_bias": 1.0,
+      "flow_speed": 0.25,
+      "flow_offset": 1.5,
+      "intensity_offset": 1.5,
+      "vertical_fade": false
+    },
+    {
+      "color": "@CURSED_GLINT_SECONDARY_WAVE_GLOW",
+      "position": 0.6,
+      "thickness": 0.15,
+      "inner_alpha": 0.0,
+      "outer_alpha": 1.0,
+      "inner_bias": -1.8,
+      "outer_bias": -1.0,
+      "flow_speed": 0.25,
+      "flow_offset": 1.5,
+      "intensity_offset": 1.5,
+      "vertical_fade": false
+    }
+  ],
+  "rings": [
+    {
+      "color": "@CURSED_GLINT_RING",
+      "spin_speed": 0.35,
+      "radius": 0.58,
+      "thickness": 0.1,
+      "arc_offset": 0.0
+    }
+  ]
+}

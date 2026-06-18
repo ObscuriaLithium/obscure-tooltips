@@ -1,0 +1,10 @@
+{
+  "panel": "vibrant_tooltips:golden",
+  "frame": "vibrant_tooltips:golden",
+  "icon": "vibrant_tooltips:epic",
+  "effects": [
+    "vibrant_tooltips:epic_ray_glow",
+    "vibrant_tooltips:epic_icon_particles",
+    "vibrant_tooltips:epic_shimmer"
+  ]
+}
