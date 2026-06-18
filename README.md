@@ -17,3 +17,7 @@ Obscure Tooltips is a client-side mod that enhances item tooltips with animated 
 
 - [Curseforge](https://www.curseforge.com/minecraft/mc-mods/obscure-tooltips)
 - [Modrinth](https://modrinth.com/mod/obscure-tooltips)
+
+---
+
+Want to contribute? See [CONTRIBUTING.md](CONTRIBUTING.md).
