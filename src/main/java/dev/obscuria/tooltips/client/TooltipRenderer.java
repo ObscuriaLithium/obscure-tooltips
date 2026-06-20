@@ -1,5 +1,6 @@
 package dev.obscuria.tooltips.client;
 
+import dev.obscuria.tooltips.client.component.TextComponent;
 import dev.obscuria.tooltips.client.component.TooltipComponent;
 import dev.obscuria.tooltips.client.render.GuiGraphics;
 import dev.obscuria.tooltips.client.tooltip.TooltipScroll;
@@ -15,6 +16,8 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
+import net.minecraftforge.client.event.RenderTooltipEvent;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ public final class TooltipRenderer {
         state = new EmptyState();
     }
 
-    public static boolean render(GuiGraphics graphics, FontRenderer font, List<TooltipComponent> components,
+    public static boolean render(GuiGraphics graphics, FontRenderer font, List<String> rawLines, List<TooltipComponent> components,
                                  int mouseX, int mouseY, int screenWidth, int screenHeight, ItemStack stack) {
         if (!ClientConfig.ENABLED.get()) return false;
         if (components.isEmpty()) return false;
@@ -65,11 +68,31 @@ public final class TooltipRenderer {
 
         var componentX = margin + posX;
         var componentY = margin + posY;
+
+        var tooltipTop = componentY;
+        for (var component : components) {
+            if (!(component instanceof TextComponent)) {
+                tooltipTop += component.getHeight();
+            }
+        }
+        final var eventY = tooltipTop - 12;
+
+        final var eventWidth = TooltipHelper.widthOf(components, font);
+        final var eventHeight = (componentY + TooltipHelper.heightOf(components)) - eventY;
+
+        MinecraftForge.EVENT_BUS.post(new RenderTooltipEvent.PostBackground(
+                stack, rawLines, componentX, eventY, font, eventWidth, eventHeight
+        ));
+
         for (var component : components) {
             component.renderText(font, componentX, componentY, graphics);
             component.renderImage(font, componentX, componentY, graphics);
             componentY += component.getHeight();
         }
+
+        MinecraftForge.EVENT_BUS.post(new RenderTooltipEvent.PostText(
+                stack, rawLines, componentX, eventY, font, eventWidth, eventHeight
+        ));
 
         graphics.pose().popMatrix();
 

@@ -34,7 +34,7 @@ public final class TooltipEventHandler {
             for (String line : event.getLines()) {
                 components.add(TooltipComponent.create(line));
             }
-            final boolean rendered = TooltipRenderer.render(graphics, event.getFontRenderer(), components,
+            final boolean rendered = TooltipRenderer.render(graphics, event.getFontRenderer(), event.getLines(), components,
                     event.getX(), event.getY(), event.getScreenWidth(), event.getScreenHeight(), stack);
             if (rendered) {
                 event.setCanceled(true);
