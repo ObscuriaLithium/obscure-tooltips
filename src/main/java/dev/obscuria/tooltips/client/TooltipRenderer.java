@@ -10,12 +10,9 @@ import dev.obscuria.tooltips.client.tooltip.layout.ToolPreviewLayout;
 import dev.obscuria.tooltips.client.tooltip.layout.TooltipLayout;
 import dev.obscuria.tooltips.config.ClientConfig;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.item.*;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -54,6 +51,10 @@ public final class TooltipRenderer {
         final var posY = positionY(screenHeight, mouseY, height);
 
         TooltipScroll.update(state, 6 + height, screenHeight);
+
+        GlStateManager.disableRescaleNormal();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableLighting();
 
         graphics.pose().pushMatrix();
         graphics.pose().translate(0.0F, TooltipScroll.getScroll(), 400.0F);
@@ -95,6 +96,10 @@ public final class TooltipRenderer {
         ));
 
         graphics.pose().popMatrix();
+
+        GlStateManager.enableLighting();
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.enableRescaleNormal();
 
         lastStack = actualStack;
         actualStack = ItemStack.EMPTY;
