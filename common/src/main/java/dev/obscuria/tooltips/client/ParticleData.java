@@ -21,7 +21,7 @@ public abstract class ParticleData {
 
         final var progress = computeProgress(state);
         final var translation = computeTranslation(state, progress);
-        final var scale = computeScale(state, progress);
+        final var scale = Math.max(0f,  computeScale(state, progress));
         final var rotation = computeRotation(state, progress);
 
         graphics.pose().pushPose();
