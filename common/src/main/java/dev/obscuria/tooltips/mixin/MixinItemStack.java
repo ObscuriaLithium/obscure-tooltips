@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import dev.obscuria.fragmentum.content.world.tooltip.GroupTooltip;
 import dev.obscuria.tooltips.client.component.StackBuffer;
 import dev.obscuria.tooltips.config.ClientConfig;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,6 +20,7 @@ public abstract class MixinItemStack {
     private Optional<TooltipComponent> aquamirae$injectBuffer(Optional<TooltipComponent> original) {
         final var self = (ItemStack) (Object) this;
         if (!ClientConfig.ENABLED.get()) return original;
+        if (self.has(DataComponents.HIDE_TOOLTIP)) return original;
         if (ClientConfig.isIgnored(self.getItem())) return original;
         return Optional.of(GroupTooltip.maybeGroup(original.orElse(null), new StackBuffer(self)));
     }
