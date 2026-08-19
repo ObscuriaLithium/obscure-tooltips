@@ -38,7 +38,7 @@ public record RayGlowEffect(
     public void renderIcon(TooltipState state, GuiGraphics graphics, int x, int y) {
         final var time = state.timeInSeconds();
         final var base = Mth.clamp(Easing.EASE_OUT_CUBIC.compute(time / 0.5f), 0f, 1f);
-        final var scale = base + 0.75f * Easing.EASE_OUT_CUBIC.mergeOut(Easing.EASE_OUT_CUBIC, 0.25f).compute(time);
+        final var scale = base + 0.75f * Math.max(0f, Easing.EASE_IN_CUBIC.mergeOut(Easing.EASE_OUT_CUBIC, 0.35f).compute(time));
 
         RenderSystem.enableBlend();
         RenderSystem.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
