@@ -1,0 +1,8 @@
+{
+  "rarity.common": "普通",
+  "rarity.uncommon": "罕見",
+  "rarity.rare": "稀有",
+  "rarity.epic": "史詩",
+  "toast.obscure_tooltips.hint_1": "啟用內建的 %s 資源包",
+  "toast.obscure_tooltips.hint_2": "內含動畫效果與樣式！"
+}
